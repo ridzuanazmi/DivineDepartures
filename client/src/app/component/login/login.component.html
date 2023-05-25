@@ -1,0 +1,23 @@
+<h1>Login Page</h1>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label for="email">Email:</label><br>
+    <input type="email" name="email" id="email" formControlName="email">
+    <small style="color: crimson" *ngIf="submitted && loginForm.get('email')?.hasError('required')">Please enter your
+      email address</small>
+  </div>
+<br>
+  <div>
+    <label for="password">Password:</label><br>
+    <input type="password" name="password" id="password" formControlName="password">
+    <small style="color: crimson" *ngIf="submitted && loginForm.get('password')?.hasError('required')">Please enter your
+      password</small>
+  </div>
+<br>
+  <div>
+    <button type="submit">Login</button>
+  </div>
+
+</form>
