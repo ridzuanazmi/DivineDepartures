@@ -1,0 +1,47 @@
+<h1> Register Page </h1>
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label for="firstName">First Name:</label>
+    <input type="text" name="firstName" placeholder="Enter first name" formControlName="firstName">
+    <div *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.dirty">
+      <small *ngIf="registerForm.get('firstName')?.hasError('required')">First Name is required</small>
+      <small *ngIf="registerForm.get('firstName')?.hasError('minLength')">First Name must be at least 2 characters long.</small>
+    </div>
+  </div>
+
+
+  <div>
+    <label for="lastName">Last Name:</label>
+    <input type="text" name="lastName" formControlName="lastName">
+    <div *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.dirty">
+      <small *ngIf="registerForm.get('lastName')?.hasError('required')">Last Name is required</small>
+      <small *ngIf="registerForm.get('lastName')?.hasError('minLength')">Last Name must be at least 2 characters long.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" name="email" formControlName="email">
+    <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.dirty">
+      <small *ngIf="registerForm.get('email')?.hasError('required')">Email is required</small>
+      <small *ngIf="registerForm.get('email')?.hasError('email')">Email must be in a valid format e.g example@example.com</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" name="password" formControlName="password">
+  </div>
+
+  <div>
+    <label for="confirmPassword">Confirm password:</label>
+    <input type="password" name="confirmPassword" placeholder="Re-enter password" formControlName="confirmPassword">
+  </div>
+
+  <div>
+    <button type="submit" [disabled]="registerForm.invalid">Submit</button>
+  </div>
+
+</form>
