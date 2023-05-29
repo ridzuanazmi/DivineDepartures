@@ -5,17 +5,26 @@
   <div>
     <label for="email">Email:</label><br>
     <input type="email" name="email" id="email" formControlName="email">
-    <small style="color: crimson" *ngIf="submitted && loginForm.get('email')?.hasError('required')">Please enter your
-      email address</small>
+    <div *ngIf="submitted">
+      <small style="color: crimson" *ngIf="loginForm.get('email')?.hasError('email')">Email must be in a valid format
+        e.g
+        example@example.com</small>
+      <small style="color: crimson" *ngIf="loginForm.get('email')?.hasError('required')">Required field</small>
+    </div>
   </div>
-<br>
+  <br>
   <div>
     <label for="password">Password:</label><br>
-    <input type="password" name="password" id="password" formControlName="password">
+    <input [type]="loginForm.get('hidePassword')?.value ? 'text' : 'password'" name="password" id="password"
+      formControlName="password"><br>
     <small style="color: crimson" *ngIf="submitted && loginForm.get('password')?.hasError('required')">Please enter your
       password</small>
   </div>
-<br>
+  <br>
+  <div>
+    <input type="checkbox" formControlName="hidePassword"> Show Password
+  </div>
+  <br>
   <div>
     <button type="submit">Login</button>
   </div>

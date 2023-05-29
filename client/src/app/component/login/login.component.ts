@@ -35,7 +35,8 @@ export class LoginComponent implements OnInit {
         Validators.required,
         Validators.email]],
       password: ['', [
-        Validators.required]]
+        Validators.required]],
+      hidePassword: ['']
     });
   }
 

@@ -27,7 +27,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSec) throws Exception {
 
         CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
-        requestHandler.setCsrfRequestAttributeName("_csrf"); // Default is "_csrf" only for clarity
+        requestHandler.setCsrfRequestAttributeName("_csrf"); // Default is "_csrf" this is only for clarity
 
         /*
          * we need to let Spring Security framework, that, "Please create the JSESSIONID by following this sessionManagement
@@ -39,7 +39,7 @@ public class SecurityConfig {
          * .and().sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
          */
 
-        httpSec.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)// Configure session management, should not store authentication/session state (aka stateless)
+        httpSec.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)// Configure session management, should not store authentication/session state (aka stateless) and each request should be authenticated
                 .and()
                 .csrf((csrf) -> csrf.csrfTokenRequestHandler(requestHandler)
                     .ignoringRequestMatchers("/contact/**", "/auth/**")

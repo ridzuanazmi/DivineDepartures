@@ -22,14 +22,16 @@ public class AuthenticationController {
     }
 
     @PostMapping(path = "/register")
-    public ResponseEntity<AuthenticationResponse> register(
+    public ResponseEntity<String> register(
             @RequestBody RegisterRequest request) {
+
         return ResponseEntity.ok(authSrvc.register(request));
     }
 
     @PostMapping(path = "/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request) {
+
         return ResponseEntity.ok(authSrvc.authenticate(request));
     }
 

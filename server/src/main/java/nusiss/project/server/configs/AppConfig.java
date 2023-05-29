@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import nusiss.project.server.repositories.UserRepository;
 
@@ -22,6 +23,7 @@ public class AppConfig {
         this.userRepo = userRepo;
     }
 
+    // Fetch the user from MySQL into UserDetails
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> userRepo.findByEmail(username)
@@ -34,7 +36,7 @@ public class AppConfig {
         // encode password and etc.
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         // Tell authProvider which userDetailsService to use in order to fetch info on users
-        authProvider.setUserDetailsService(userDetailsService()); 
+        authProvider.setUserDetailsService(userDetailsService()); // from the above method
         // Which password encoder using in order to decode the password using the correct algorithm 
         authProvider.setPasswordEncoder(passwordEncoder()); 
         return authProvider;
@@ -48,5 +50,11 @@ public class AppConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    // CORS
+    @Bean
+    public WebMvcConfigurer configureCors() {
+        return new EnableCors("/**", "*");
     }
 }

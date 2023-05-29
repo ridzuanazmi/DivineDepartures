@@ -6,8 +6,8 @@
     <label for="firstName">First Name:</label><br>
     <input type="text" name="firstName" placeholder="Enter first name" formControlName="firstName"><br>
     <div *ngIf="submitted">
-      <small *ngIf="registerForm.get('firstName')?.hasError('minlength')">Min 2 characters long.</small>
-      <small *ngIf="registerForm.get('firstName')?.hasError('required')">Required field</small>
+      <small style="color: crimson" *ngIf="registerForm.get('firstName')?.hasError('minlength')">Min 2 characters long.</small>
+      <small style="color: crimson" *ngIf="registerForm.get('firstName')?.hasError('required')">Required field</small>
     </div>
   </div>
   <br>
@@ -15,8 +15,8 @@
     <label for="lastName">Last Name:</label><br>
     <input type="text" name="lastName" formControlName="lastName"><br>
     <div *ngIf="submitted">
-      <small *ngIf="registerForm.get('lastName')?.hasError('minlength')">Min 2 characters long.</small>
-      <small *ngIf="registerForm.get('lastName')?.hasError('required')">Required field</small>
+      <small style="color: crimson" *ngIf="registerForm.get('lastName')?.hasError('minlength')">Min 2 characters long.</small>
+      <small style="color: crimson" *ngIf="registerForm.get('lastName')?.hasError('required')">Required field</small>
     </div>
   </div>
   <br>
@@ -24,9 +24,9 @@
     <label for="email">Email:</label><br>
     <input type="email" name="email" formControlName="email"><br>
     <div *ngIf="submitted">
-      <small *ngIf="registerForm.get('email')?.hasError('email')">Email must be in a valid format e.g
+      <small style="color: crimson" *ngIf="registerForm.get('email')?.hasError('email')">Email must be in a valid format e.g
         example@example.com</small>
-      <small *ngIf="registerForm.get('email')?.hasError('required')">Required field</small>
+      <small style="color: crimson" *ngIf="registerForm.get('email')?.hasError('required')">Required field</small>
     </div>
   </div>
   <br>
@@ -61,7 +61,7 @@
     <input [type]="registerForm.get('hidePassword')?.value ? 'text' : 'password'" name="confirmPassword"
       placeholder="Re-enter password" formControlName="confirmPassword"><br>
     <div *ngIf="submitted">
-      <small style="color: crimson" *ngIf="registerForm.get('confirmPassword')?.hasError('required')">Required field</small>
+      <small style="color: crimson" *ngIf="registerForm.get('confirmPassword')?.hasError('required')">Required field<br></small>
       <small style="color: crimson" *ngIf="registerForm.hasError('passwordMatchError')">Password mismatch</small>
     </div>
   </div>

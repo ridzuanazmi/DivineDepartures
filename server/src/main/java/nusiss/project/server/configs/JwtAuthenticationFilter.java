@@ -8,7 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -78,15 +77,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 );
                 SecurityContextHolder.getContext().setAuthentication(authToken); // updates the SecurityContextHolder
             }
-        }
-        
-        // Stores the CSRF token from current request attribute 
-        CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
-
-        // Sets an HTTP response header with the name of the CSRF token header and the value of the CSRF token
-        // if not null 
-        if (csrfToken != null) {
-            response.setHeader(csrfToken.getHeaderName(), csrfToken.getToken());
         }
 
         // After the filter has done its authentication or authorization checks, 
