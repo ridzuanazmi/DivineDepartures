@@ -64,7 +64,8 @@ public class JwtService {
         return Jwts
                 .builder()
                 .setClaims(extraClaims) // Sets JWT payload to be JSON claims instance specified name/value pairs
-                .setSubject(userDetails.getUsername()) // Sets claims subject value which is the username of the user
+                .claim("role", userDetails.getAuthorities().toString()) // Sets the role of the specific user
+                .setSubject(userDetails.getUsername()) // Sets claims subject value which is the username of the user which is the email
                 .setIssuedAt(new Date(System.currentTimeMillis())) // Sets JWT creation timestamp and to check expiration time if it is still valid
                 .setExpiration(new Date(System.currentTimeMillis() + KEY_EXPIRATION)) // Sets how long this token should be valid
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256) // Sets the SECRET_KEY

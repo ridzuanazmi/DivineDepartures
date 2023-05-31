@@ -26,6 +26,7 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSec) throws Exception {
 
+        // Makes CSRF token available as a request attribute and resolving the token value as a header or parameter value
         CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
         requestHandler.setCsrfRequestAttributeName("_csrf"); // Default is "_csrf" this is only for clarity
 
@@ -42,8 +43,9 @@ public class SecurityConfig {
         httpSec.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)// Configure session management, should not store authentication/session state (aka stateless) and each request should be authenticated
                 .and()
                 .csrf((csrf) -> csrf.csrfTokenRequestHandler(requestHandler)
-                    .ignoringRequestMatchers("/contact/**", "/auth/**")
-                    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
+                    .ignoringRequestMatchers("/contact/**", "/auth/**") // ignores request so CSRF is disabled only here
+                    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())) // Persists the CSRF token in a cookie with the default name and can read the cookie value in Angular
+                    .addFilterAfter(new CsrfCookieFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests()
                     .requestMatchers("/auth/**", "/contact/**").permitAll() // whitelists the specified request matchers
                     .anyRequest().authenticated() // any other requests needs to be authenticated

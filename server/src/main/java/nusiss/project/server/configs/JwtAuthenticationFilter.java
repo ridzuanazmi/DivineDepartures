@@ -43,7 +43,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (null == filterChain)
             throw new NullPointerException("filterChain is marked non-null but is null\n");
 
-        // Stores the authentication header
+        // Extracts the authentication header
         final String authHeader = request.getHeader("Authorization");
         // Stores the extracted JWT from the authentication header
         final String jwt; // JWT token

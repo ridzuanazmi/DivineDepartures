@@ -19,7 +19,7 @@ public class CsrfCookieFilter extends OncePerRequestFilter {
             FilterChain filterChain)
             throws ServletException, IOException {
 
-        // Stores the CSRF token from current request attribute 
+        // Reads and stores the CSRF token from current request attribute 
         CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
 
         // Sets an HTTP response header with the name of the CSRF token header and the value of the CSRF token
