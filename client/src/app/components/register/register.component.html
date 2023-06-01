@@ -1,0 +1,77 @@
+<h1> Register Page </h1>
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label for="firstName">First Name:</label><br>
+    <input type="text" name="firstName" placeholder="Enter first name" formControlName="firstName"><br>
+    <div *ngIf="submitted">
+      <small style="color: crimson" *ngIf="registerForm.get('firstName')?.hasError('minlength')">Min 2 characters long.</small>
+      <small style="color: crimson" *ngIf="registerForm.get('firstName')?.hasError('required')">Required field</small>
+    </div>
+  </div>
+  <br>
+  <div>
+    <label for="lastName">Last Name:</label><br>
+    <input type="text" name="lastName" formControlName="lastName"><br>
+    <div *ngIf="submitted">
+      <small style="color: crimson" *ngIf="registerForm.get('lastName')?.hasError('minlength')">Min 2 characters long.</small>
+      <small style="color: crimson" *ngIf="registerForm.get('lastName')?.hasError('required')">Required field</small>
+    </div>
+  </div>
+  <br>
+  <div>
+    <label for="email">Email:</label><br>
+    <input type="email" name="email" formControlName="email"><br>
+    <div *ngIf="submitted">
+      <small style="color: crimson" *ngIf="registerForm.get('email')?.hasError('email')">Email must be in a valid format e.g
+        example@example.com</small>
+      <small style="color: crimson" *ngIf="registerForm.get('email')?.hasError('required')">Required field</small>
+    </div>
+  </div>
+  <br>
+  <div>
+    <label for="password">Password:</label><br>
+    <input [type]="registerForm.get('hidePassword')?.value ? 'text' : 'password'" name="password"
+      formControlName="password"><br>
+    <div *ngIf="submitted && registerForm.get('password')?.errors?.['passwordStrength']">
+      <small style="color: crimson"
+        *ngIf="!(registerForm.get('password')?.errors?.['passwordStrength']?.hasUpperCase)">Password must contain an
+        uppercase letter<br></small>
+      <small style="color: crimson"
+        *ngIf="!(registerForm.get('password')?.errors?.['passwordStrength']?.hasLowerCase)">Password must contain a
+        lowercase letter<br></small>
+      <small style="color: crimson"
+        *ngIf="!(registerForm.get('password')?.errors?.['passwordStrength']?.hasNumeric)">Password must contain a
+        number<br></small>
+      <small style="color: crimson"
+        *ngIf="!(registerForm.get('password')?.errors?.['passwordStrength']?.hasSpecialChar)">Password must contain a
+        special character<br></small>
+      <small style="color: crimson"
+        *ngIf="!(registerForm.get('password')?.errors?.['passwordStrength']?.hasMinLength)">Password must be at least 8
+        characters<br></small>
+      <div *ngIf="registerForm.get('password')?.hasError('required')">
+        <small style="color: crimson">Password is required</small>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div>
+    <label for="confirmPassword">Confirm password:</label><br>
+    <input [type]="registerForm.get('hidePassword')?.value ? 'text' : 'password'" name="confirmPassword"
+      placeholder="Re-enter password" formControlName="confirmPassword"><br>
+    <div *ngIf="submitted">
+      <small style="color: crimson" *ngIf="registerForm.get('confirmPassword')?.hasError('required')">Required field<br></small>
+      <small style="color: crimson" *ngIf="registerForm.hasError('passwordMatchError')">Password mismatch</small>
+    </div>
+  </div>
+  <br>
+  <div>
+    <input type="checkbox" formControlName="hidePassword"> Show Password
+  </div>
+  <br>
+  <div>
+    <button type="submit">Submit</button>
+  </div>
+
+</form>

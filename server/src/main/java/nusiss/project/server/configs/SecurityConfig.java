@@ -1,5 +1,7 @@
 package nusiss.project.server.configs;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -10,6 +12,10 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Configuration
 @EnableWebSecurity
@@ -42,6 +48,19 @@ public class SecurityConfig {
 
         httpSec.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)// Configure session management, should not store authentication/session state (aka stateless) and each request should be authenticated
                 .and()
+                .cors().configurationSource(new CorsConfigurationSource() {
+                    @Override
+                    public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+                        CorsConfiguration config = new CorsConfiguration();
+                        config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+                        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+                        config.setAllowCredentials(true);
+                        config.setAllowedHeaders(Arrays.asList("*"));
+                        config.setExposedHeaders(Arrays.asList("Authorization"));
+                        return config;
+                    }
+                })
+                        .and()
                 .csrf((csrf) -> csrf.csrfTokenRequestHandler(requestHandler)
                     .ignoringRequestMatchers("/contact/**", "/auth/**") // ignores request so CSRF is disabled only here
                     .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())) // Persists the CSRF token in a cookie with the default name and can read the cookie value in Angular
