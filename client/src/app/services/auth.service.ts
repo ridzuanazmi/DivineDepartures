@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 
@@ -15,7 +16,8 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
   constructor(
-    private jwtHelper: JwtHelperService) { }
+    private jwtHelper: JwtHelperService,
+    private router: Router) { }
 
   addJwt(token: string) {
     window.sessionStorage.setItem('token', token); // store JWT in session storage
@@ -31,6 +33,12 @@ export class AuthService {
 
   isLoggedIn() {
     return !!this.getJwt() && !this.isJwtExpired();
+  }
+
+  logout() {
+    window.sessionStorage.removeItem("XSRF-TOKEN");
+    window.sessionStorage.removeItem("token");
+    this.router.navigate(['/']);
   }
 
   isJwtExpired() {

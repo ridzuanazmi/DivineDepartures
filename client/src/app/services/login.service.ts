@@ -16,7 +16,10 @@ export class LoginService {
       .set('Accept', 'application/json');
 
     return firstValueFrom(
-      this.http.post<LoginResponse>('http://localhost:8080/auth/authenticate', loginReq, { headers: headers, withCredentials: true })
+      this.http.post<LoginResponse>(
+        'http://localhost:8080/auth/authenticate',
+        loginReq,
+        { headers: headers, withCredentials: true })
     );
   }
 }

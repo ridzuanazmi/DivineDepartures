@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.app-header {
+  flex: 0 0 auto; /* This ensures that the header does not shrink or grow */
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1 0 auto; /* This allows the content to shrink and grow as necessary */
+  width: 100%;
+}
+
+.google-map-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+  width: 100%;
+}
+
+.location-description {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+  width: 100%;
+}
+
+.text-success {
+  margin-bottom: 5px;
+  color: green;
+}
+
+.contact-card {
+  max-width: 900px;
+  width: 100%;
+  border-radius: 15px;
+}
+
+@media (min-width: 800px) {
+  .content {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; /* Center the children vertically */
+  }
+
+  .google-map-container {
+    width: 50%;
+  }
+
+  .container {
+    width: 50%;
+  }
+}

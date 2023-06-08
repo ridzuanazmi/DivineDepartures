@@ -1,0 +1,40 @@
+/* CSS */
+ngb-carousel {
+  margin: auto;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 600px; /* set to your preference */
+  overflow: hidden;
+}
+
+.image-wrapper img {
+  max-height: 100%;
+  max-width: 100%;
+}
+.image-wrapper:before {
+  content: "";
+  background-image:
+    linear-gradient(
+      to bottom,
+      transparent, rgba(0,0,0.5)
+    );
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.carousel-caption {
+  font-size: 16px; /* set to your preference */
+  line-height: 1.4;
+}
+
+.carousel-caption h3 {
+  font-weight: bold;
+}

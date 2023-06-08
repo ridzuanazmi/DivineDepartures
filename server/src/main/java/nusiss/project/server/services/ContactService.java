@@ -21,7 +21,7 @@ public class ContactService {
     // Generate UUID for the contactId
     public String contactIdGeneration() {
         String contactId = UUID.randomUUID().toString().substring(0, 8);
-        return contactId;
+        return "SR"+contactId;
     }
 
     // Convert the date into String "dd-MMM-yyyy hh:mm"

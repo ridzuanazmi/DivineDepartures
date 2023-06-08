@@ -1,0 +1,70 @@
+<app-header></app-header>
+
+<div class="container">
+  <mat-card class="mat-elevation-z8">
+
+    <mat-card-header>
+      <mat-card-title>
+        <h2>Grave Maintenance Services</h2>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p>Keeping the grave of a loved one clean is a crucial aspect of maintaining respect for their memory.
+        However, due to the natural exposure to outdoor elements, maintaining a clean and pristine grave can be
+        challenging. Our <strong>Grave Cleaning Services</strong> are specifically designed to handle this, ensuring the
+        <strong>respectful</strong> and <strong>dignified appearance</strong> of your loved one's final resting place.
+      </p>
+
+      <p>We understand that every grave is unique and deserves personalized care and attention. Our professional
+        team is proficient in cleaning various types of grave materials such as <strong>stone, marble, bronze, bricks
+          and granite</strong>. We
+        employ <strong>safe, gentle, and environmentally-friendly cleaning techniques and chemicals</strong> to remove
+        dirt, stains,
+        lichen, mold, and other natural build-ups that can deteriorate the look of the grave over time.</p>
+
+      <p>Our services also include <strong>cleaning of the surrounding areas</strong>, removing vines, trimming down
+        overgrowth and ensuring the overall aesthetic
+        appeal of the site is preserved. We treat each grave with the respect it deserves, taking meticulous care to
+        leave it looking as beautiful and serene as it should be.</p>
+
+      <p>Through our <strong>Grave Cleaning Services</strong>, we help ensure that the final resting place of your loved
+        ones remains a clean, dignified, and comforting space for you to visit and remember them by.</p>
+    </mat-card-content>
+
+    <ngb-carousel style="height: 400px; width: 600px;">
+      <ng-template ngbSlide>
+        <div class="image-wrapper">
+          <img [src]="images[0]" alt="first-slide.jpg">
+        </div>
+        <div class="carousel-caption">
+          <h3>Overgrowth Vines Removal</h3>
+          <p>Removing overgrowth plants, vines and weeds with housekeeping</p>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="image-wrapper">
+          <img [src]="images[1]" alt="second-slide.jpg">
+        </div>
+        <div class="carousel-caption">
+          <h3>Landscape Maintenance</h3>
+          <p>Grass trimming and weed removal</p>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="image-wrapper">
+          <img [src]="images[2]" alt="third-slide.jpg">
+        </div>
+        <div class="carousel-caption">
+          <h3>Chemical Wash</h3>
+          <p>Remove dirt, stains, mold on various types of grave materials</p>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" routerLink="/contact-us">Contact Us For More Info</button>
+    </mat-card-actions>
+
+  </mat-card>
+</div>

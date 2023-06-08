@@ -1,19 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { DemoComponent } from './components/demo/demo.component';
+import { ServicesComponent } from './components/services/services.component';
+import { ShopComponent } from './components/shop/shop.component';
+import { CartComponent } from './components/cart/cart.component';
+import { MaintenanceComponent } from './components/services/maintenance/maintenance.component';
+import { RepairComponent } from './components/services/repair/repair.component';
+import { ReplacementComponent } from './components/services/replacement/replacement.component';
+
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
+  { path: "home", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "demo", component: DemoComponent },
-  { path: "home", component: HomeComponent },
+  { path: "services", component: ServicesComponent },
+  { path: "maintenance", component: MaintenanceComponent },
+  { path: "replacement", component: ReplacementComponent },
+  { path: "repair", component: RepairComponent },
+  { path: "cart", component: CartComponent },
+  { path: "shop", component: ShopComponent },
   { path: "contact-us", component: ContactComponent },
-  { path: "logout", component: LogoutComponent },
   { path: "register", component: RegisterComponent },
   { path: "**", redirectTo: "/", pathMatch: "full"}
 ];

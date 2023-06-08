@@ -1,0 +1,35 @@
+.top-header {
+  height: 70px;
+  position: relative;
+}
+
+.mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.center-nav-links {
+  margin: auto;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 0 15px;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 900px) {
+  .nav-link {
+    display: none;
+  }
+}
+
+#app-name {
+  font-size: 1.5em;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}

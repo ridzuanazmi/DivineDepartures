@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<div class="container">
+  <form [formGroup]="shopForm" (ngSubmit)="onSubmit()" class="shop-form">
+
+    <mat-form-field appearance="outline" class="shop-form-field">
+      <mat-label>Deceased Name</mat-label>
+      <input matInput formControlName="deceasedName">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="shop-form-field">
+      <mat-label>Block</mat-label>
+      <input matInput formControlName="block">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="shop-form-field">
+      <mat-label>Plot Number</mat-label>
+      <input matInput type="number" formControlName="plotNumber">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="shop-form-field">
+      <mat-label>Date of Death</mat-label>
+      <input matInput type="date" formControlName="dateOfDeath">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="shop-form-field">
+      <mat-label>Tombstone Height</mat-label>
+      <input matInput formControlName="tombstoneHeight">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="shop-form-field">
+      <mat-label>Tombstone Material</mat-label>
+      <input matInput formControlName="tombstoneMaterial">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="shop-form-field">
+      <mat-label>Tiles</mat-label>
+      <input matInput formControlName="tiles">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="shop-form-field">
+      <mat-label>Curved Mosaic Tile</mat-label>
+      <input matInput formControlName="curvedMosaicTile">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="shop-form-field">
+      <mat-label>Top Cover</mat-label>
+      <input matInput formControlName="topCover">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="shop-form-field">
+      <mat-label>Plant</mat-label>
+      <input matInput formControlName="plant">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="shopForm.invalid">Submit</button>
+
+  </form>
+</div>
+

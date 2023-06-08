@@ -1,0 +1,145 @@
+<app-header></app-header>
+<!-- TODO: Add pictures and should link this to a form page inquiry? -->
+<div class="container">
+  <h1 class="service-title"><strong>Grave Repair Services</strong></h1>
+
+  <mat-card class="service-card">
+    <mat-card-header>
+      <mat-card-title>Cracked Exterior Repair</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        We understand that it's distressing to see your loved one's final resting place fall into disrepair. Over time,
+        weather conditions, age and environmental factors can cause the exterior of a gravestone to crack and
+        deteriorate.
+      </p>
+      <p>
+        That's where our Cracked Exterior Repair Service comes in. Our team of skilled workers have the knowledge and
+        experience to handle all kinds of exterior repairs. We employ careful, respectful techniques to restore
+        gravestones to their original state, preserving the history and memory of those who have passed.
+      </p>
+      <p>
+        We carefully evaluate the damage, and depending on its extent, we use specialized tools and materials to repair
+        the cracks without causing further damage. Our team ensures that the original look and feel of the grave remains
+        intact, while reinforcing its structure and longevity.
+      </p>
+    </mat-card-content>
+
+    <ngb-carousel style="height: 600px; width: 400px;">
+      <ng-template ngbSlide>
+        <div class="cracked-image-wrapper">
+          <img [src]="images[2]" alt="first-slide.jpg">
+        </div>
+        <div class="carousel-caption">
+          <h3>Cracked Tiles</h3>
+          <p>Reparation service for cracked tiles and small stones</p>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="cracked-image-wrapper">
+          <img [src]="images[4]" alt="third-slide.jpg">
+        </div>
+        <div class="carousel-caption">
+          <h3>Cracked Tiles</h3>
+          <p>Reparation service for cracked tiles and small stones</p>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" routerLink="/contact-us">Contact Us For More Info</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="service-card">
+    <mat-card-header>
+      <mat-card-title>Wood Repainting Service</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        At Divine Departures, we are committed to preserving the dignity and integrity of your loved ones' resting
+        places. As a part of our comprehensive suite of services, we offer expert Wood Repainting services to keep
+        wooden structures looking fresh and well-maintained.
+      </p>
+      <p>
+        Our experienced team handles each repainting job with precision and respect. We take the time to prepare the
+        surface properly, removing any old, flaking paint and repairing minor damage before we begin the repainting
+        process. We use high-quality, weather-resistant paint to ensure the finished result is durable and long-lasting.
+      </p>
+    </mat-card-content>
+
+    <ngb-carousel style="height: 400px; width: 600px;">
+      <ng-template ngbSlide>
+        <div class="wood-image-wrapper">
+          <img [src]="images[0]" alt="first-slide.jpg">
+        </div>
+        <div class="carousel-caption">
+          <h3>Before (Intense Overgrowth + Wood Exterior)</h3>
+          <p>Our team can handle an intense case of neglect</p>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="wood-image-wrapper">
+          <img [src]="images[1]" alt="second-slide.jpg">
+        </div>
+        <div class="carousel-caption">
+          <h3>After (Intense Overgrowth + Wood Exterior)</h3>
+          <p>Grave in pristine condition after great efforts as requested by customer</p>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" routerLink="/contact-us">Contact Us For More Info</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="service-card">
+    <mat-card-header>
+      <mat-card-title>Plant Overgrowth Restoration Service</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        Graveyards, due to their serene and often undisturbed nature, can at times be overtaken by plant overgrowth.
+        While this can add to the peaceful atmosphere, uncontrolled plant growth can also lead to damage and an untidy
+        appearance of the grave.
+      </p>
+      <p>
+        Our Plant Overgrowth Restoration service aims to address this. We carefully remove excess plant growth,
+        including invasive weeds and vines, that have begun to encroach upon the grave. Our goal is to not only
+        protect the grave from potential damage caused by these plants but also restore and maintain the aesthetic
+        harmony of the area.
+      </p>
+      <p>
+        In doing so, we take utmost care to preserve the grave. Our team is trained to work in a way that respects
+        and honors the sanctity of the site while carrying out the necessary restoration work.
+        After our restoration, the grave will stand neat and undisturbed in its surroundings
+      </p>
+    </mat-card-content>
+
+    <ngb-carousel style="height: 400px; width: 600px; margin-top: 10px;" >
+      <ng-template ngbSlide>
+        <div class="plant-image-wrapper">
+          <img [src]="images[6]" alt="first-slide.jpg">
+        </div>
+        <div class="carousel-caption">
+          <h3>Before (Intense Overgrowth)</h3>
+          <p>Our team can handle an intense case of overgrowth</p>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="plant-image-wrapper">
+          <img [src]="images[5]" alt="second-slide.jpg">
+        </div>
+        <div class="carousel-caption">
+          <h3>After (Intense Overgrowth)</h3>
+          <p>Grave in pristine condition after great efforts as requested by customer</p>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" routerLink="/contact-us">Contact Us For More Info</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

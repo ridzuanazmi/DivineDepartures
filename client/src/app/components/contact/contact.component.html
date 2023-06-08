@@ -1,1 +1,52 @@
-<p>contact works!</p>
+<app-header></app-header>
+
+<div class="content">
+  <div class="google-map-container">
+    <p class="location-description"><mat-icon> place</mat-icon>We are located at 550 Choa Chu Kang St 52</p>
+    <google-map [center]="center" style="position: relative;">
+      <map-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition"></map-marker>
+    </google-map>
+  </div>
+
+  <div class="container">
+    <span class="text-success" *ngIf="contact?.contactId">Your message is submitted. Reference ID is
+      {{contact.contactId}}</span>
+
+    <div>
+      <mat-card class="contact-card">
+        <mat-card-header>
+          <mat-card-title>Send us an inquiry</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>We’re excited to hear from you. Please fill out the form below, and our team will be in touch soon.</p>
+          <form [formGroup]="contactForm" #formDirective="ngForm" (ngSubmit)="onSubmit(formDirective)">
+            <mat-form-field appearance="outline" style="width: 100%;">
+              <mat-label>Your Name</mat-label>
+              <input matInput placeholder="Full name" formControlName="contactName">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 100%;">
+              <mat-label>Your Email</mat-label>
+              <input matInput placeholder="Ex. pat@example.com" formControlName="contactEmail">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 100%;">
+              <mat-label>Subject</mat-label>
+              <input matInput placeholder="Ex. Grave Cleaning Services" formControlName="subject">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 100%;">
+              <mat-label>Your Message</mat-label>
+              <textarea matInput placeholder="Any inquiries, questions for us?" formControlName="message"></textarea>
+            </mat-form-field>
+
+            <div style="text-align: right;">
+              <button mat-raised-button color="primary" type="submit">Send</button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  </div>
+</div>
