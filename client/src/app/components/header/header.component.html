@@ -5,8 +5,14 @@
     </a>
 
     <div class="center-nav-links">
+      <a *ngIf="!isLoggedIn" mat-button routerLink="/login" class="nav-link">
+        Login
+      </a>
+      <a *ngIf="!isLoggedIn" mat-button routerLink="/register" class="nav-link">
+        Sign up
+      </a>
       <a mat-button routerLink="/shop" class="nav-link">
-        Shop
+        Order Online
       </a>
       <!-- Services dropdown menu -->
       <button mat-button [matMenuTriggerFor]="servicesMenu" class="nav-link">
@@ -16,7 +22,6 @@
         <button mat-menu-item routerLink="/repair">Repair</button>
         <button mat-menu-item routerLink="/replacement">Replacement</button>
         <button mat-menu-item routerLink="/maintenance">Maintenance</button>
-        <!-- ... add more services as needed ... -->
       </mat-menu>
       <a mat-button routerLink="/cart" class="nav-link">
         Cart
@@ -30,7 +35,9 @@
       [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/shop">Shop</button>
+        <button mat-menu-item *ngIf="!isLoggedIn" routerLink="/login">Login</button>
+        <button mat-menu-item *ngIf="!isLoggedIn" routerLink="/register">Sign up</button>
+        <button mat-menu-item routerLink="/shop">Order Online</button>
         <button mat-menu-item routerLink="/services">Services</button>
         <button mat-menu-item routerLink="/cart">Cart</button>
         <button mat-menu-item routerLink="/contact-us">Contact Us</button>

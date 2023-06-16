@@ -3,17 +3,45 @@
   justify-content: center;
 }
 
-.shop-form {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
 .shop-form-field {
   width: 100%;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.tooltip-button {
+  position: relative;
+}
+
+.tooltip-image {
+  position: relative;
+  top: 100%; /* position below the button */
+  left: 50%; /* center align */
+  transform: translateX(-50%); /* center align */
+  z-index: 1; /* make it appear on top of other elements */
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.tooltip-button:hover .tooltip-image {
+  display: block; /* show the tooltip on hover */
+}
+
+
+.radio-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.radio-option img{
+  margin-bottom: 10px;
+  margin-top: 5px;
 }
 
 button {

@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -17,7 +18,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import nusiss.project.server.models.Shop;
 
 @Entity
 @Table(name = "_user")
@@ -37,6 +40,9 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING) // Tells spring this is enum
     private Role role; // USER or ADMIN value
+
+    @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+    private List<Shop> shops;
 
     // Constructors
     public User() {
@@ -94,6 +100,12 @@ public class User implements UserDetails {
     // }
     public void setPassword(String password) {
         this.password = password;
+    }
+    public List<Shop> getShops() {
+        return shops;
+    }
+    public void setShops(List<Shop> shops) {
+        this.shops = shops;
     }
 
     // toString
@@ -201,4 +213,5 @@ public class User implements UserDetails {
     public static UserBuilder builder() {
         return new UserBuilder();
     }
+    
 }

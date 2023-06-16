@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit{
         let xsrf = getCookie('XSRF-TOKEN')!;
         console.info("XSRF-TOKEN = ", xsrf);
         window.sessionStorage.setItem('XSRF-TOKEN', xsrf);
-        this.router.navigate(['/demo']);
+        this.router.navigate(['/home']);
       })
       .catch(error => {
         console.error('>>> loginForm: error: ', error)

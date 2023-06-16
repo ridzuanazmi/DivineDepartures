@@ -31,13 +31,14 @@ export interface Shop {
   deceasedName: string;
   block: string;
   plotNumber: number;
-  dateOfDeath: Date;
+  dateOfDeath: string;
   tombstoneHeight: string; // e.g. 10cm
   tombstoneMaterial: string // e.g. granite
   tiles: string; // e.g. white, black, marble, brick
   curvedMosaicTile: string; // e.g. C-159
   topCover: string; // e.g. carpet grass, pebbles
   plant: string; // e.g. jasmine plant
+  email?: string // Optional
 }
 
 export interface BillingDetails {

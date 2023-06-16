@@ -1,60 +1,465 @@
 <app-header></app-header>
 
 <div class="container">
-  <form [formGroup]="shopForm" (ngSubmit)="onSubmit()" class="shop-form">
 
-    <mat-form-field appearance="outline" class="shop-form-field">
-      <mat-label>Deceased Name</mat-label>
-      <input matInput formControlName="deceasedName">
-    </mat-form-field>
+  <form [formGroup]="shopForm" (ngSubmit)="onSubmit()">
+    <mat-stepper formArrayName="sections" [linear]="false">
 
-    <mat-form-field appearance="outline" class="shop-form-field">
-      <mat-label>Block</mat-label>
-      <input matInput formControlName="block">
-    </mat-form-field>
+      <!-- Deceased Details Step -->
+      <mat-step formGroupName="0" [stepControl]="sections.get([0])!">
+        <ng-template matStepLabel>Fill out deceased details</ng-template>
+        <div class="deceased-details">
+          <mat-form-field appearance="outline" class="shop-form-field">
+            <mat-label>Deceased Name</mat-label>
+            <input matInput placeholder="Full name" formControlName="deceasedName">
+          </mat-form-field>
 
-    <mat-form-field appearance="outline" class="shop-form-field">
-      <mat-label>Plot Number</mat-label>
-      <input matInput type="number" formControlName="plotNumber">
-    </mat-form-field>
+          <mat-form-field appearance="outline" class="shop-form-field">
+            <mat-label>Block</mat-label>
+            <input matInput placeholder="e.g. N-12-123" formControlName="block">
+          </mat-form-field>
 
-    <mat-form-field appearance="outline" class="shop-form-field">
-      <mat-label>Date of Death</mat-label>
-      <input matInput type="date" formControlName="dateOfDeath">
-    </mat-form-field>
+          <mat-form-field appearance="outline" class="shop-form-field">
+            <mat-label>Plot Number</mat-label>
+            <input matInput type="number" formControlName="plotNumber">
+          </mat-form-field>
 
-    <mat-form-field appearance="outline" class="shop-form-field">
-      <mat-label>Tombstone Height</mat-label>
-      <input matInput formControlName="tombstoneHeight">
-    </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Date of death</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dateOfDeath">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperNext type="button">Next</button>
+        </div>
+      </mat-step>
 
-    <mat-form-field appearance="outline" class="shop-form-field">
-      <mat-label>Tombstone Material</mat-label>
-      <input matInput formControlName="tombstoneMaterial">
-    </mat-form-field>
+      <!-- Grave Details Step -->
+      <mat-step formGroupName="1" [stepControl]="sections.get([1])!">
+        <ng-template matStepLabel>Fill out grave details</ng-template>
+        <div class="grave-details">
+          <label for="tombstoneHeight">Tombstone Height:</label><br>
+          <div class="radio-group" style="margin-bottom: 10px;">
+            <div>
+              <input type="radio" formControlName="tombstoneHeight" id="10cm" value="10cm">
+              <label for="10cm">10cm</label>
+            </div>
+            <div>
+              <input type="radio" formControlName="tombstoneHeight" id="12cm" value="12cm">
+              <label for="12cm">12cm</label>
+            </div>
+            <div>
+              <input type="radio" formControlName="tombstoneHeight" id="15cm" value="15cm">
+              <label for="15cm">15cm</label>
+            </div>
+            <div>
+              <input type="radio" formControlName="tombstoneHeight" id="20cm" value="20cm">
+              <label for="20cm">20cm</label>
+            </div>
+            <div>
+              <input type="radio" formControlName="tombstoneHeight" id="25cm" value="25cm">
+              <label for="25cm">25cm</label>
+            </div>
+            <div>
+              <input type="radio" formControlName="tombstoneHeight" id="30cm" value="30cm">
+              <label for="30cm">30cm</label>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <label for="tombstoneMaterial">Tombstone Material:</label><br>
+          <div class="radio-group">
+            <div class="radio-option">
+              <img src="assets/images/shop/nesan-2.jpg" width="90" height="90">
+              <input type="radio" formControlName="tombstoneMaterial" id="darkGrey" value="darkGrey">
+              <label for="darkGrey">Dark Grey</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/nesan-3.jpg" width="90" height="90">
+              <input type="radio" formControlName="tombstoneMaterial" id="grey" value="grey">
+              <label for="grey">Grey</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/nesan-4.jpg" width="90" height="90">
+              <input type="radio" formControlName="tombstoneMaterial" id="black" value="black">
+              <label for="black">Black</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/nesan-1.jpg" width="90" height="90">
+              <input type="radio" formControlName="tombstoneMaterial" id="white" value="white">
+              <label for="white">White</label>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <label for="tiles">Grave Tiles Material:</label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <img src="assets/images/shop/white1.jpg" alt="White 1" width="90" height="90">
+              <input type="radio" formControlName="tiles" id="white1" value="white1" name="tiles">
+              <label for="white1">White 1</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/white2.jpg" alt="White 2" width="90" height="90">
+              <input type="radio" formControlName="tiles" id="white1" value="white2" name="tiles">
+              <label for="white1">White 2</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/grey1.jpg" alt="Grey 1" width="90" height="90">
+              <input type="radio" formControlName="tiles" id="grey1" value="grey1" name="tiles">
+              <label for="grey1">Grey 1</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/grey2.jpg" alt="Grey 2" width="90" height="90">
+              <input type="radio" formControlName="tiles" id="grey2" value="grey2" name="tiles">
+              <label for="grey2">Grey 2</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/black1.jpg" alt="Grey 3" width="90" height="90">
+              <input type="radio" formControlName="tiles" id="grey3" value="grey3" name="tiles">
+              <label for="grey3">Grey 3</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/black2.jpg" alt="Black 1" width="90" height="90">
+              <input type="radio" formControlName="tiles" id="black1" value="black1" name="tiles">
+              <label for="black1">Black 1</label>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
 
-    <mat-form-field appearance="outline" class="shop-form-field">
-      <mat-label>Tiles</mat-label>
-      <input matInput formControlName="tiles">
-    </mat-form-field>
+          <label>Curved Mosaic Tile:</label>
+          <button class="tooltip-button" (mouseover)="showTooltip = true" (mouseout)="showTooltip = false">
+            ?
+          </button>
+          <div class="tooltip-image" *ngIf="showTooltip">
+            <img src="assets\images\shop\curvedMosaic.jpg" width="120" height="120">
+          </div>
+          <div class="radio-group">
+            <div class="radio-option">
+              <img src="assets/images/shop/white.png" width="90" height="90">
+              <input type="radio" formControlName="curvedMosaicTile" id="darkGrey" value="white">
+              <label for="darkGrey">White</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/black.png" width="90" height="90">
+              <input type="radio" formControlName="curvedMosaicTile" id="black" value="black">
+              <label for="black">Black</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/lime.png" width="90" height="90">
+              <input type="radio" formControlName="curvedMosaicTile" id="black" value="lime">
+              <label for="black">Lime</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/red.png" width="90" height="90">
+              <input type="radio" formControlName="curvedMosaicTile" id="red" value="red">
+              <label for="red">Red</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/gold.png" width="90" height="90">
+              <input type="radio" formControlName="curvedMosaicTile" id="gold" value="gold">
+              <label for="gold">Gold</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/silver.png" width="90" height="90">
+              <input type="radio" formControlName="curvedMosaicTile" id="silver" value="silver">
+              <label for="silver">Silver</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/blue.png" width="90" height="90">
+              <input type="radio" formControlName="curvedMosaicTile" id="blue" value="blue">
+              <label for="blue">Blue</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/darkblue.png" width="90" height="90">
+              <input type="radio" formControlName="curvedMosaicTile" id="darkblue" value="darkblue">
+              <label for="darkblue">Dark Blue</label>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
 
-    <mat-form-field appearance="outline" class="shop-form-field">
-      <mat-label>Curved Mosaic Tile</mat-label>
-      <input matInput formControlName="curvedMosaicTile">
-    </mat-form-field>
+          <label for="tombstoneMaterial">Top Cover Material:</label><br>
+          <div class="radio-group">
+            <div class="radio-option">
+              <img src="assets/images/shop/top-1.jpg" width="90" height="90">
+              <input type="radio" formControlName="topCover" id="darkGrey" value="darkGrey">
+              <label for="darkGrey">Carpet Grass</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/top-2.jpg" width="90" height="90">
+              <input type="radio" formControlName="topCover" id="grey" value="grey">
+              <label for="grey">Black Pebbles</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/top-3.jpg" width="90" height="90">
+              <input type="radio" formControlName="topCover" id="black" value="black">
+              <label for="black">White Pebbles</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/top-4.jpg" width="90" height="90">
+              <input type="radio" formControlName="topCover" id="white" value="white">
+              <label for="white">Mix Pebbles</label>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
 
-    <mat-form-field appearance="outline" class="shop-form-field">
-      <mat-label>Top Cover</mat-label>
-      <input matInput formControlName="topCover">
-    </mat-form-field>
+          <label for="plant">Top Plant:</label><br>
+          <div class="radio-group">
+            <div class="radio-option">
+              <img src="assets/images/shop/plant-1.jpg" width="120" height="120">
+              <input type="radio" formControlName="plant" value="basic">
+              <label for="basic">Basic Plant</label>
+            </div>
+            <div class="radio-option">
+              <img src="assets/images/shop/plain.png" width="120" height="120">
+              <input type="radio" formControlName="plant" value="none">
+              <label for="basic">No Plant</label>
+            </div>
 
-    <mat-form-field appearance="outline" class="shop-form-field">
-      <mat-label>Plant</mat-label>
-      <input matInput formControlName="plant">
-    </mat-form-field>
+            <div class="radio-option">
+              <img src="assets/images/shop/other.jpg" width="90" height="90">
+              <input class="form-check-input" type="radio" formControlName="plant" id="other" value="other">
+              <label class="form-check-label" for="other">Other</label>
+            </div>
+
+            <div class="radio-option" *ngIf="shopForm.get('sections')?.get([1, 'plant'])?.value === 'other'">
+              <label for="otherPlant">Please specify:</label>
+              <input type="text" class="form-control" id="otherPlant" formControlName="otherPlant">
+            </div>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div>
+          <button mat-button matStepperPrevious type="button">Back</button>
+          <button mat-button matStepperNext type="button">Next</button>
+        </div>
+      </mat-step>
+
+      <!-- Final Step -->
+      <mat-step>
+        <ng-template matStepLabel>Review and submit</ng-template>
+        <p>Review and Submit</p>
+        <p>Our team will get back to you on the requirement via email</p>
+        <div>
+          <button mat-raised-button color="primary" type="submit">Submit</button>
+        </div>
+      </mat-step>
+
+    </mat-stepper>
+  </form>
+
+  <!-- <form [formGroup]="shopForm" (ngSubmit)="onSubmit()">
+
+    <div class="deceased-details">
+      <mat-form-field appearance="outline" class="shop-form-field">
+        <mat-label>Deceased Name</mat-label>
+        <input matInput placeholder="Full name" formControlName="deceasedName">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="shop-form-field">
+        <mat-label>Block</mat-label>
+        <input matInput formControlName="block">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="shop-form-field">
+        <mat-label>Plot Number</mat-label>
+        <input matInput type="number" formControlName="plotNumber">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="shop-form-field">
+        <mat-label>Date of Death</mat-label>
+        <input matInput type="date" formControlName="dateOfDeath">
+      </mat-form-field>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="grave-details">
+      <label for="tombstoneHeight">Tombstone Height:</label><br>
+      <div class="radio-group" style="margin-bottom: 10px;">
+        <div>
+          <input type="radio" formControlName="tombstoneHeight" id="10cm" value="10cm">
+          <label for="10cm">10cm</label>
+        </div>
+        <div>
+          <input type="radio" formControlName="tombstoneHeight" id="12cm" value="12cm">
+          <label for="12cm">12cm</label>
+        </div>
+        <div>
+          <input type="radio" formControlName="tombstoneHeight" id="15cm" value="15cm">
+          <label for="15cm">15cm</label>
+        </div>
+        <div>
+          <input type="radio" formControlName="tombstoneHeight" id="20cm" value="20cm">
+          <label for="20cm">20cm</label>
+        </div>
+        <div>
+          <input type="radio" formControlName="tombstoneHeight" id="25cm" value="25cm">
+          <label for="25cm">25cm</label>
+        </div>
+        <div>
+          <input type="radio" formControlName="tombstoneHeight" id="30cm" value="30cm">
+          <label for="30cm">30cm</label>
+        </div>
+      </div>
+
+      <label for="tombstoneMaterial">Tombstone Material:</label><br>
+      <div class="radio-group">
+        <div class="radio-option">
+          <img src="assets/images/shop/nesan-2.jpg" width="90" height="90">
+          <input type="radio" formControlName="tombstoneMaterial" id="darkGrey" value="darkGrey">
+          <label for="darkGrey">Dark Grey</label>
+        </div>
+        <div class="radio-option">
+          <img src="assets/images/shop/nesan-3.jpg" width="90" height="90">
+          <input type="radio" formControlName="tombstoneMaterial" id="grey" value="grey">
+          <label for="grey">Grey</label>
+        </div>
+        <div class="radio-option">
+          <img src="assets/images/shop/nesan-4.jpg" width="90" height="90">
+          <input type="radio" formControlName="tombstoneMaterial" id="black" value="black">
+          <label for="black">Black</label>
+        </div>
+        <div class="radio-option">
+          <img src="assets/images/shop/nesan-1.jpg" width="90" height="90">
+          <input type="radio" formControlName="tombstoneMaterial" id="white" value="white">
+          <label for="white">White</label>
+        </div>
+      </div>
+
+      <label for="tiles">Grave Tiles Material:</label>
+        <div class="radio-group">
+          <div class="radio-option">
+              <img src="assets/images/shop/white1.jpg" alt="White 1" width="90" height="90">
+              <input type="radio" formControlName="tiles" id="white1" value="white1" name="tiles">
+              <label for="white1">White 1</label>
+          </div>
+          <div class="radio-option">
+              <img src="assets/images/shop/white2.jpg" alt="White 2" width="90" height="90">
+              <input type="radio" formControlName="tiles" id="white1" value="white2" name="tiles">
+              <label for="white1">White 2</label>
+          </div>
+          <div class="radio-option">
+              <img src="assets/images/shop/grey1.jpg" alt="Grey 1" width="90" height="90">
+              <input type="radio" formControlName="tiles" id="grey1" value="grey1" name="tiles">
+              <label for="grey1">Grey 1</label>
+          </div>
+          <div class="radio-option">
+              <img src="assets/images/shop/grey2.jpg" alt="Grey 2" width="90" height="90">
+              <input type="radio" formControlName="tiles" id="grey2" value="grey2" name="tiles">
+              <label for="grey2">Grey 2</label>
+          </div>
+          <div class="radio-option">
+              <img src="assets/images/shop/black1.jpg" alt="Grey 3" width="90" height="90">
+              <input type="radio" formControlName="tiles" id="grey3" value="grey3" name="tiles">
+              <label for="grey3">Grey 3</label>
+          </div>
+          <div class="radio-option">
+              <img src="assets/images/shop/black2.jpg" alt="Black 1" width="90" height="90">
+              <input type="radio" formControlName="tiles" id="black1" value="black1" name="tiles">
+              <label for="black1">Black 1</label>
+          </div>
+        </div>
+
+
+        <label>Curved Mosaic Tile:</label>
+        <button class="tooltip-button" (mouseover)="showTooltip = true" (mouseout)="showTooltip = false">
+          ?
+        </button>
+        <div class="tooltip-image" *ngIf="showTooltip">
+          <img src="assets\images\shop\curvedMosaic.jpg" width="120" height="120">
+        </div>
+        <div class="radio-group">
+          <div class="radio-option">
+            <img src="assets/images/shop/white.png" width="90" height="90">
+            <input type="radio" formControlName="curvedMosaicTile" id="darkGrey" value="white">
+            <label for="darkGrey">White</label>
+          </div>
+          <div class="radio-option">
+            <img src="assets/images/shop/black.png" width="90" height="90">
+            <input type="radio" formControlName="curvedMosaicTile" id="black" value="black">
+            <label for="black">Black</label>
+          </div>
+          <div class="radio-option">
+            <img src="assets/images/shop/lime.png" width="90" height="90">
+            <input type="radio" formControlName="curvedMosaicTile" id="black" value="lime">
+            <label for="black">Lime</label>
+          </div>
+          <div class="radio-option">
+            <img src="assets/images/shop/red.png" width="90" height="90">
+            <input type="radio" formControlName="curvedMosaicTile" id="red" value="red">
+            <label for="red">Red</label>
+          </div>
+          <div class="radio-option">
+            <img src="assets/images/shop/gold.png" width="90" height="90">
+            <input type="radio" formControlName="curvedMosaicTile" id="gold" value="gold">
+            <label for="gold">Gold</label>
+          </div>
+          <div class="radio-option">
+            <img src="assets/images/shop/silver.png" width="90" height="90">
+            <input type="radio" formControlName="curvedMosaicTile" id="silver" value="silver">
+            <label for="silver">Silver</label>
+          </div>
+          <div class="radio-option">
+            <img src="assets/images/shop/blue.png" width="90" height="90">
+            <input type="radio" formControlName="curvedMosaicTile" id="blue" value="blue">
+            <label for="blue">Blue</label>
+          </div>
+          <div class="radio-option">
+            <img src="assets/images/shop/darkblue.png" width="90" height="90">
+            <input type="radio" formControlName="curvedMosaicTile" id="darkblue" value="darkblue">
+            <label for="darkblue">Dark Blue</label>
+          </div>
+        </div>
+
+
+      <label for="tombstoneMaterial">Top Cover Material:</label><br>
+      <div class="radio-group">
+        <div class="radio-option">
+          <img src="assets/images/shop/top-1.jpg" width="90" height="90">
+          <input type="radio" formControlName="topCover" id="darkGrey" value="darkGrey">
+          <label for="darkGrey">Carpet Grass</label>
+        </div>
+        <div class="radio-option">
+          <img src="assets/images/shop/top-2.jpg" width="90" height="90">
+          <input type="radio" formControlName="topCover" id="grey" value="grey">
+          <label for="grey">Black Pebbles</label>
+        </div>
+        <div class="radio-option">
+          <img src="assets/images/shop/top-3.jpg" width="90" height="90">
+          <input type="radio" formControlName="topCover" id="black" value="black">
+          <label for="black">White Pebbles</label>
+        </div>
+        <div class="radio-option">
+          <img src="assets/images/shop/top-4.jpg" width="90" height="90">
+          <input type="radio" formControlName="topCover" id="white" value="white">
+          <label for="white">Mix Pebbles</label>
+        </div>
+      </div>
+
+      <label for="plant">Top Plant:</label><br>
+      <div class="radio-group">
+        <div class="radio-option">
+          <img src="assets/images/shop/plant-1.jpg" width="120" height="120">
+          <input type="radio" formControlName="plant" value="basic">
+          <label for="darkGrey">Basic Plant</label>
+        </div>
+        <div class="radio-option">
+          <img src="assets/images/shop/other.jpg" width="90" height="90">
+          <input class="form-check-input" type="radio" formControlName="plant" id="other" value="other">
+          <label class="form-check-label" for="other">Other</label>
+        </div>
+
+        <div class="radio-option" *ngIf="shopForm.get('plant')?.value === 'other'">
+          <label for="otherPlant">Please specify:</label>
+          <input type="text" class="form-control" id="otherPlant" formControlName="otherPlant">
+        </div>
+      </div>
+
+    </div>
 
     <button mat-raised-button color="primary" type="submit" [disabled]="shopForm.invalid">Submit</button>
 
-  </form>
+  </form> -->
 </div>
-

@@ -1,33 +1,45 @@
 <app-header></app-header>
-<h1>Login Page</h1>
 
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<div class="center-card">
+  <mat-card class="card-style">
+    <mat-card-header>
+      <mat-card-title style="margin-bottom: 10px;">Login Page</mat-card-title>
+    </mat-card-header>
 
-  <div>
-    <label for="email">Email:</label><br>
-    <input type="email" name="email" id="email" formControlName="email">
-    <div *ngIf="submitted">
-      <small style="color: crimson" *ngIf="loginForm.get('email')?.hasError('email')">Email must be in a valid format
-        e.g
-        example@example.com</small>
-      <small style="color: crimson" *ngIf="loginForm.get('email')?.hasError('required')">Required field</small>
-    </div>
-  </div>
-  <br>
-  <div>
-    <label for="password">Password:</label><br>
-    <input [type]="loginForm.get('hidePassword')?.value ? 'text' : 'password'" name="password" id="password"
-      formControlName="password"><br>
-    <small style="color: crimson" *ngIf="submitted && loginForm.get('password')?.hasError('required')">Please enter your
-      password</small>
-  </div>
-  <br>
-  <div>
-    <input type="checkbox" formControlName="hidePassword"> Show Password
-  </div>
-  <br>
-  <div>
-    <button type="submit">Login</button>
-  </div>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
-</form>
+        <mat-form-field class="field-style" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email">
+          <mat-error *ngIf="submitted && loginForm.get('email')?.hasError('required')">
+            Required field
+          </mat-error>
+          <mat-error *ngIf="submitted && loginForm.get('email')?.hasError('email')">
+            Email must be in a valid format e.g example@example.com
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="field-style" appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="loginForm.get('hidePassword')?.value ? 'text' : 'password'" name="password" id="password"
+          formControlName="password">
+          <mat-error *ngIf="submitted && loginForm.get('password')?.hasError('required')">
+            Please enter your password
+          </mat-error>
+        </mat-form-field>
+
+        <mat-checkbox formControlName="hidePassword">Show Password</mat-checkbox>
+        <div style="float: right;">
+          <button mat-raised-button color="primary" type="submit">Login</button>
+        </div>
+
+        <div>
+
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+

@@ -1,0 +1,16 @@
+.center-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card-style {
+  width: 800px; /* Adjust as needed */
+  padding: 20px;
+}
+
+.field-style {
+  width: 100%;
+  margin-bottom: 20px;
+}

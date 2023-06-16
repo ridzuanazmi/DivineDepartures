@@ -11,6 +11,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { MaintenanceComponent } from './components/services/maintenance/maintenance.component';
 import { RepairComponent } from './components/services/repair/repair.component';
 import { ReplacementComponent } from './components/services/replacement/replacement.component';
+import { AuthGuard } from './services/permission.guard';
 
 
 const routes: Routes = [
@@ -23,7 +24,7 @@ const routes: Routes = [
   { path: "replacement", component: ReplacementComponent },
   { path: "repair", component: RepairComponent },
   { path: "cart", component: CartComponent },
-  { path: "shop", component: ShopComponent },
+  { path: "shop", component: ShopComponent, canActivate: [ AuthGuard ] },
   { path: "contact-us", component: ContactComponent },
   { path: "register", component: RegisterComponent },
   { path: "**", redirectTo: "/", pathMatch: "full"}

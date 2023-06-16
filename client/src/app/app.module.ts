@@ -24,6 +24,7 @@ import { RepairComponent } from './components/services/repair/repair.component';
 import { ReplacementComponent } from './components/services/replacement/replacement.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MaintenanceComponent,
     RepairComponent,
     ReplacementComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

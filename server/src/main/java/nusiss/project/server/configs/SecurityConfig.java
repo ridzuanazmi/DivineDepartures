@@ -62,11 +62,11 @@ public class SecurityConfig {
                 })
                         .and()
                 .csrf((csrf) -> csrf.csrfTokenRequestHandler(requestHandler)
-                    .ignoringRequestMatchers("/contact-us", "/auth/**") // ignores request so CSRF is disabled only here
+                    .ignoringRequestMatchers("/contact-us", "/auth/**", "/email/welcome") // ignores request so CSRF is disabled only here
                     .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())) // Persists the CSRF token in a cookie with the default name and can read the cookie value in Angular
                     .addFilterAfter(new CsrfCookieFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests()
-                    .requestMatchers("/auth/**", "/contact-us").permitAll() // whitelists the specified request matchers
+                    .requestMatchers("/auth/**", "/contact-us", "/email/welcome").permitAll() // whitelists the specified request matchers
                     .anyRequest().authenticated() // any other requests needs to be authenticated
                 .and() // .and() to add new config
                 .authenticationProvider(authenticationProvider)
