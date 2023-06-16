@@ -43,4 +43,18 @@ public class EmailService {
 
       System.out.println("Welcome email sent successfully");
   }
+  public void sendShopEmail(
+    String contactEmail, 
+    String subject, 
+    String contactMessage) {
+
+      SimpleMailMessage message = new SimpleMailMessage();
+      message.setTo("divinedepartures.11@gmail.com");
+      message.setSubject(subject);
+      message.setText(contactMessage);
+      message.setFrom(contactEmail);
+      javaMailSender.send(message);
+
+      System.out.println("Welcome email sent successfully");
+  }
 }
