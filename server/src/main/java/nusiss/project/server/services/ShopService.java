@@ -31,14 +31,24 @@ public class ShopService {
 
     Optional<User> optionalUser = userRepo.findByEmail(shopDto.getEmail());
     if (!optionalUser.isPresent()) {
-        // handle this case as appropriate for your application, for example:
-        throw new RuntimeException("No user found with email: " + shopDto.getEmail());
+      // handle this case as appropriate for your application, for example:
+      throw new RuntimeException("No user found with email: " + shopDto.getEmail());
     }
-
     User user = optionalUser.get();
     Shop shop = new Shop();
-    // set shop fields from shopDto
+    // Transfer properties from the shopDto to the shop
     shop.setUser(user);
+    shop.setDeceasedName(shopDto.getDeceasedName());
+    shop.setBlock(shopDto.getBlock());
+    shop.setPlotNumber(shopDto.getPlotNumber());
+    shop.setDateOfDeath(shopDto.getDateOfDeath());
+    shop.setTombstoneHeight(shopDto.getTombstoneHeight());
+    shop.setTombstoneMaterial(shopDto.getTombstoneMaterial());
+    shop.setTiles(shopDto.getTiles());
+    shop.setCurvedMosaicTile(shopDto.getCurvedMosaicTile());
+    shop.setTopCover(shopDto.getTopCover());
+    shop.setPlant(shopDto.getPlant());
+    
     shopRepo.save(shop);
     return shop;
   }

@@ -12,11 +12,13 @@ export class AppRequestInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
     const token = sessionStorage.getItem('token');
+    const xsrf = sessionStorage.getItem('XSRF-TOKEN');
 
-    if (token) {
+    if (token && xsrf) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
+          'X-XSRF-TOKEN': xsrf
         }
       })
     }

@@ -41,6 +41,10 @@ export interface Shop {
   email?: string // Optional
 }
 
+export interface ShopResponse {
+
+}
+
 export interface BillingDetails {
   firstName: String;
   lastName: String;

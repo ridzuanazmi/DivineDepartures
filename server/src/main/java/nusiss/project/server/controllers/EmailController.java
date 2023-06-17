@@ -19,7 +19,7 @@ import nusiss.project.server.services.EmailService;
 import nusiss.project.server.services.ShopService;
 
 @RestController
-@RequestMapping("/email")
+@RequestMapping(path = "/email")
 public class EmailController {
 
   private final EmailService emailSrvc;
@@ -38,7 +38,7 @@ public class EmailController {
 
     LOGGER.info("POST /email/shop");
     LOGGER.debug(shopDto.toString());
-
+    // Create a shop object from the request (with the user details) and saves it in the DB
     Shop shop = shopSrvc.createShop(shopDto);
     System.out.println(shop.toString());
 

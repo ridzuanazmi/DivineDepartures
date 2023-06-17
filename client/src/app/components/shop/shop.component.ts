@@ -1,8 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Shop } from 'src/app/models/models';
 import { AuthService } from 'src/app/services/auth.service';
+import { ShopService } from 'src/app/services/shop.service';
 
 @Component({
   selector: 'app-shop',
@@ -18,7 +20,9 @@ export class ShopComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private datePipe: DatePipe,
-    private authSrvc: AuthService) { }
+    private authSrvc: AuthService,
+    private shopSrvc: ShopService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.shopForm = this.createForm();
@@ -45,7 +49,21 @@ export class ShopComponent implements OnInit {
       email: this.authSrvc.getEmailFromJwt()
     };
     console.log('shop info:', shop);
-    this.shopForm.reset();
+
+    this.shopSrvc.sendShop(shop)
+      .then((response) => {
+        console.log("Response from server: ", response);
+        this.snackBar.open('Order placed successfully!', 'Close', {
+          duration: 2000,
+        });
+      })
+      .catch(err => {
+        // Display an error message
+        this.snackBar.open('Failed to place the order. Please try again.', 'Close', {
+          duration: 3000,
+        });
+        console.log("Error occurred: ", err);
+      })
   }
 
   private createForm(): FormGroup {
