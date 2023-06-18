@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="content">
-  <div class="google-map-container">
+  <div class="google-map-container" id="map">
     <p class="location-description"><mat-icon> place</mat-icon>We are located at 550 Choa Chu Kang St 52</p>
     <google-map [center]="center" style="position: relative;">
       <map-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition"></map-marker>

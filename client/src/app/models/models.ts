@@ -19,6 +19,12 @@ export interface LoginResponse {
   token: string;
 };
 
+export interface User {
+  firstName: string
+  lastName: string
+  email: string
+};
+
 export interface Contact {
   contactId: string
   contactName: string
@@ -39,11 +45,7 @@ export interface Shop {
   topCover: string; // e.g. carpet grass, pebbles
   plant: string; // e.g. jasmine plant
   email?: string // Optional
-}
-
-export interface ShopResponse {
-
-}
+};
 
 export interface BillingDetails {
   firstName: String;
@@ -52,4 +54,8 @@ export interface BillingDetails {
   mobileNumber: number;
   address: string;
   postalCode: String;
-}
+};
+
+export interface StripeId{
+  sessionId: string
+};

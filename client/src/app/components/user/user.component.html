@@ -1,2 +1,21 @@
 <app-header></app-header>
-<p>user works!</p>
+
+<mat-card class="user-profile-card">
+  <mat-card-header>
+    <mat-card-title>Profile Information</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div>
+      <h4>First Name: </h4>
+      <p>{{ user.firstName }}</p>
+    </div>
+    <div>
+      <h4>Last Name: </h4>
+      <p>{{ user.lastName }}</p>
+    </div>
+    <div>
+      <h4>Email: </h4>
+      <p>{{ user.email }}</p>
+    </div>
+  </mat-card-content>
+</mat-card>

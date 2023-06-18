@@ -53,6 +53,7 @@ export class ShopComponent implements OnInit {
     this.shopSrvc.sendShop(shop)
       .then((response) => {
         console.log("Response from server: ", response);
+        this.shopForm.reset();
         this.snackBar.open('Order placed successfully!', 'Close', {
           duration: 2000,
         });

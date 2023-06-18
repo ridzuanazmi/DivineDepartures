@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
+import { User } from '../models/models';
 
 /*
   1. Helps to authenticate JWT
@@ -60,5 +61,17 @@ export class AuthService {
     const sub = decodedToken.sub;
     console.log(">>> sub from JWT = ", sub); // comment out for security
     return sub;
+  }
+
+  getInfoFromJwt(): User {
+    const decodedToken = this.jwtHelper.decodeToken(this.getJwt()??""); // get the decoded JWT
+
+    let user: User = {
+      firstName: decodedToken.firstName,
+      lastName: decodedToken.lastName,
+      email: decodedToken.sub
+    };
+
+    return user;
   }
 }

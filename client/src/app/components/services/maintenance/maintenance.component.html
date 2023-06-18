@@ -62,8 +62,18 @@
       </ng-template>
     </ngb-carousel>
 
-    <mat-card-actions align="end">
-      <button mat-raised-button color="primary" routerLink="/contact-us">Contact Us For More Info</button>
+    <mat-card-actions style="display: flex; justify-content: space-between;">
+      <div>
+        <button mat-raised-button color="primary" style="margin-right: 5px;" (click)="checkoutMonthly()">
+          Pay $100 per month
+        </button>
+        <button mat-raised-button color="warn" (click)="checkoutYearly()">
+          Pay $1100 per year
+        </button>
+      </div>
+      <div>
+        <button mat-raised-button color="primary" routerLink="/contact-us">Contact Us For More Info</button>
+      </div>
     </mat-card-actions>
 
   </mat-card>

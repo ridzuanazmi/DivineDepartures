@@ -26,6 +26,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './components/footer/footer.component';
 import { UserComponent } from './components/user/user.component';
+import { SuccessComponent } from './components/success/success.component';
+import { CancelledComponent } from './components/cancelled/cancelled.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { UserComponent } from './components/user/user.component';
     RepairComponent,
     ReplacementComponent,
     FooterComponent,
-    UserComponent
+    UserComponent,
+    SuccessComponent,
+    CancelledComponent
   ],
   imports: [
     BrowserModule,
