@@ -56,7 +56,7 @@ export class AuthService {
   getEmailFromJwt() {
     const decodedToken = this.jwtHelper.decodeToken(this.getJwt()??""); // get the decoded JWT
     console.info(">> authSrvc decoded token = ", decodedToken); // comment out for security
-
+    // Get email from JWT
     const sub = decodedToken.sub;
     console.log(">>> sub from JWT = ", sub); // comment out for security
     return sub;

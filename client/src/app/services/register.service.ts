@@ -19,6 +19,4 @@ export class RegisterService {
       this.http.post<RegisterResponse>('http://localhost:8080/auth/register', registerReq, { headers })
     );
   }
-
-  // TODO: Email congratulations on successful registration
 }

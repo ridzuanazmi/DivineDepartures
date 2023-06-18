@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,7 +12,8 @@ export class HeaderComponent implements OnInit {
   isLoggedIn!: boolean;
 
   constructor(
-    private authSrvc: AuthService) { }
+    private authSrvc: AuthService,
+    private router: Router) { }
 
     ngOnInit(): void {
       this.isLoggedIn = this.authSrvc.isLoggedIn();
@@ -20,4 +22,9 @@ export class HeaderComponent implements OnInit {
     logout() {
       this.authSrvc.logout();
     }
+
+    goToUserPage() {
+      this.router.navigate(['/user']); // assuming '/user' is the route for your user component
+    }
+
 }

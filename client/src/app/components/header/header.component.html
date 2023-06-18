@@ -11,6 +11,10 @@
       <a *ngIf="!isLoggedIn" mat-button routerLink="/register" class="nav-link">
         Sign up
       </a>
+
+      <!-- Show user icon when user is logged in -->
+      <mat-icon *ngIf="isLoggedIn" (click)="goToUserPage()">account_circle</mat-icon>
+
       <a mat-button routerLink="/shop" class="nav-link">
         Order Online
       </a>

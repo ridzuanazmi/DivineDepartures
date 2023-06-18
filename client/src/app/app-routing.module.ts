@@ -12,6 +12,7 @@ import { MaintenanceComponent } from './components/services/maintenance/maintena
 import { RepairComponent } from './components/services/repair/repair.component';
 import { ReplacementComponent } from './components/services/replacement/replacement.component';
 import { AuthGuard } from './services/permission.guard';
+import { UserComponent } from './components/user/user.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: "services", component: ServicesComponent },
   { path: "maintenance", component: MaintenanceComponent },
   { path: "replacement", component: ReplacementComponent },
+  { path: "user", component: UserComponent },
   { path: "repair", component: RepairComponent },
   { path: "cart", component: CartComponent },
   { path: "shop", component: ShopComponent, canActivate: [ AuthGuard ] },
