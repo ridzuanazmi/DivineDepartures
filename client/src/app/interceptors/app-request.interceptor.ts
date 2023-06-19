@@ -1,37 +1,42 @@
 import {
   HttpHandler,
   HttpInterceptor,
-  HttpRequest
+  HttpRequest,
+  HttpXsrfTokenExtractor
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AppRequestInterceptor implements HttpInterceptor {
 
-  constructor() { }
+  constructor(private tokenExtractor: HttpXsrfTokenExtractor) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
-    const token = sessionStorage.getItem('token');
-    const xsrf = sessionStorage.getItem('XSRF-TOKEN');
+    let token = sessionStorage.getItem('token');
+    const cookieHeaderName = 'X-XSRF-TOKEN';
+    let csrfToken = this.tokenExtractor.getToken();
+    // let xsrf = sessionStorage.getItem('XSRF-TOKEN');
 
-    if (token && xsrf) {
+    if (token) {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`,
-          'X-XSRF-TOKEN': xsrf
+          // 'X-XSRF-TOKEN': csrfToken,
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      })
+    }
+    if (csrfToken) {
+      request = request.clone({
+        setHeaders: {
+          // Authorization: `Bearer ${token}`,
+          'X-XSRF-TOKEN': csrfToken,
+          'X-Requested-With': 'XMLHttpRequest'
         }
       })
     }
 
     return next.handle(request);
 
-    // let xsrf = sessionStorage.getItem('XSRF-TOKEN');
-    // if (xsrf) {
-    //   httpHeaders = httpHeaders.append('X-XSRF-TOKEN', xsrf);
-    //   request = request.clone({
-    //     headers: httpHeaders
-    //   });
-    // }
-    // httpHeaders = httpHeaders.append('X-Requested-With', 'XMLHttpRequest');
   }
 }

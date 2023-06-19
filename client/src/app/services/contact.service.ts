@@ -20,7 +20,7 @@ export class ContactService {
       this.http.post<Contact>(
         'http://localhost:8080/contact-us',
         contact,
-        { headers: headers})
+        { headers: headers, withCredentials: true})
     );
   }
 }

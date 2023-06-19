@@ -28,6 +28,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { UserComponent } from './components/user/user.component';
 import { SuccessComponent } from './components/success/success.component';
 import { CancelledComponent } from './components/cancelled/cancelled.component';
+import { CsrfComponent } from './components/csrf/csrf.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { CancelledComponent } from './components/cancelled/cancelled.component';
     FooterComponent,
     UserComponent,
     SuccessComponent,
-    CancelledComponent
+    CancelledComponent,
+    CsrfComponent
   ],
   imports: [
     BrowserModule,

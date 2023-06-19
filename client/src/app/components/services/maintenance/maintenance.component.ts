@@ -1,9 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { loadStripe } from '@stripe/stripe-js';
 import { StripeId } from 'src/app/models/models';
 import { MaintenanceService } from 'src/app/services/maintenance.service';
-import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-maintenance',
@@ -44,14 +42,14 @@ export class MaintenanceComponent {
     // this is a normal http calls for a backend api
     this.mainSrvc.subscribeMaintenance(checkout)
       .then((response: StripeId) => {
-        console.info("Maintanence subscrption response: ", response);
+        console.info("Maintenance subscription response: ", response);
         // Use stripe to redirect To Checkout page of Stripe platform
         stripe?.redirectToCheckout({
           sessionId: response.sessionId
         });
       })
       .catch(err => {
-        console.info("Maintanence subscrption error: ", err);
+        console.info("Maintenance subscription error: ", err);
       })
       .finally(() => {
         window.sessionStorage.setItem('payment', 'successful');

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Contact } from 'src/app/models/models';
 import { ContactService } from 'src/app/services/contact.service';
+import { CsrfService } from 'src/app/services/csrf.service';
+import { getCookie } from 'typescript-cookie';
 
 @Component({
   selector: 'app-contact',
@@ -19,12 +21,13 @@ export class ContactComponent implements OnInit {
     subject: '',
     message: ''
   };
-  center: google.maps.LatLngLiteral = {lat: 1.39410, lng: 103.74276};
+  center: google.maps.LatLngLiteral = { lat: 1.39410, lng: 103.74276 };
   markerPositions: google.maps.LatLngLiteral[] = [{ lat: 1.39410, lng: 103.74276 }];
 
   constructor(
     private fb: FormBuilder,
-    private contactSrvc: ContactService) { }
+    private contactSrvc: ContactService,
+    private csrfSrvc: CsrfService) { }
 
   ngOnInit(): void {
     this.contactForm = this.createForm();
@@ -37,13 +40,29 @@ export class ContactComponent implements OnInit {
         console.info("contact response: ", response);
         // save response(contactId) to display successfully sent message
         this.contact.contactId = response.contactId;
+        // Get new CSRF token
+        this.csrfSrvc.csrf()
+          .then(response => {
+            console.info("csrf: ", response)
+            // Get CSRF cookie from Spring
+            // let xsrf = getCookie('XSRF-TOKEN')!;
+            // console.info("XSRF-TOKEN = ", xsrf);
+            // window.sessionStorage.setItem('XSRF-TOKEN', xsrf);
+            // Delay for 2 seconds and then navigate to another route
+            // setTimeout(() => {
+            //   this.router.navigate(['/shop']);
+            // }, 2000);
+          })
+          .catch(err => {
+            console.info("redirect error: ", err)
+          });
       })
       .catch(error => {
         console.error('contact form error: ', error);
       })
-      // reset form
-      formDirective.resetForm();
-      this.contactForm.reset();
+    // reset form
+    formDirective.resetForm();
+    this.contactForm.reset();
   }
 
   private createForm(): FormGroup {

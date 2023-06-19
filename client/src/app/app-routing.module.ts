@@ -13,6 +13,9 @@ import { RepairComponent } from './components/services/repair/repair.component';
 import { ReplacementComponent } from './components/services/replacement/replacement.component';
 import { AuthGuard } from './services/permission.guard';
 import { UserComponent } from './components/user/user.component';
+import { SuccessComponent } from './components/success/success.component';
+import { CancelledComponent } from './components/cancelled/cancelled.component';
+import { CsrfComponent } from './components/csrf/csrf.component';
 
 
 const routes: Routes = [
@@ -23,6 +26,9 @@ const routes: Routes = [
   { path: "services", component: ServicesComponent },
   { path: "maintenance", component: MaintenanceComponent },
   { path: "replacement", component: ReplacementComponent },
+  { path: "success", component: SuccessComponent },
+  { path: "csrf", component: CsrfComponent },
+  { path: "cancelled", component: CancelledComponent },
   { path: "user", component: UserComponent },
   { path: "repair", component: RepairComponent },
   { path: "cart", component: CartComponent },
