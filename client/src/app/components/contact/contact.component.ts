@@ -47,21 +47,21 @@ export class ContactComponent implements OnInit {
         // save response(contactId) to display successfully sent message
         this.contact.contactId = response.contactId;
         // Get new CSRF token
-        this.csrfSrvc.csrf()
-          .then(response => {
-            console.info("csrf: ", response)
-            // Get CSRF cookie from Spring
-            // let xsrf = getCookie('XSRF-TOKEN')!;
-            // console.info("XSRF-TOKEN = ", xsrf);
-            // window.sessionStorage.setItem('XSRF-TOKEN', xsrf);
-            // Delay for 2 seconds and then navigate to another route
-            // setTimeout(() => {
-            //   this.router.navigate(['/shop']);
-            // }, 2000);
-          })
-          .catch(err => {
-            console.info("csrf error: ", err)
-          });
+        // this.csrfSrvc.csrf()
+        //   .then(response => {
+        //     console.info("csrf: ", response)
+        //     // Get CSRF cookie from Spring
+        //     // let xsrf = getCookie('XSRF-TOKEN')!;
+        //     // console.info("XSRF-TOKEN = ", xsrf);
+        //     // window.sessionStorage.setItem('XSRF-TOKEN', xsrf);
+        //     // Delay for 2 seconds and then navigate to another route
+        //     // setTimeout(() => {
+        //     //   this.router.navigate(['/shop']);
+        //     // }, 2000);
+        //   })
+        //   .catch(err => {
+        //     console.info("csrf error: ", err)
+        //   });
       })
       .catch(error => {
         console.error('contact form error: ', error);

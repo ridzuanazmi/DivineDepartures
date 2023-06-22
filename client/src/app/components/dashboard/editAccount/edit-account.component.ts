@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from 'src/app/models/models';
-import { AuthService } from 'src/app/services/auth.service';
 import { CsrfService } from 'src/app/services/csrf.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
 

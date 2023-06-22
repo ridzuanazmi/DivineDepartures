@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
 import { CsrfService } from 'src/app/services/csrf.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
 
@@ -31,13 +30,13 @@ export class DeleteAccountComponent implements OnInit {
     this.dashboardSrvc.deleteAccount(id)
       .then((response) => {
         console.log(response);
-        this.csrfSrvc.csrf()
-          .then(response => {
-            console.info("csrf: ", response)
-          })
-          .catch(err => {
-            console.info("redirect error: ", err)
-          });
+        // this.csrfSrvc.csrf()
+        //   .then(response => {
+        //     console.info("csrf: ", response)
+        //   })
+        //   .catch(err => {
+        //     console.info("redirect error: ", err)
+        //   });
         this.router.navigate(['/dashboard']);
         this.snackBar.open('Account successfully deleted', 'Close', {
           duration: 3000,

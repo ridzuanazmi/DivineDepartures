@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginService } from 'src/app/services/login.service';
-import { getCookie } from 'typescript-cookie';
 
 @Component({
   selector: 'app-login',
@@ -41,9 +40,9 @@ export class LoginComponent implements OnInit{
         // get email from sub of JWT using JwtHelperService
         console.log('email from JWT = ', this.authSrvc.getEmailFromJwt());
         // Get CSRF cookie from Spring
-        let xsrf = getCookie('XSRF-TOKEN')!;
-        console.info("XSRF-TOKEN = ", xsrf);
-        window.sessionStorage.setItem('XSRF-TOKEN', xsrf);
+        // let xsrf = getCookie('XSRF-TOKEN')!;
+        // console.info("XSRF-TOKEN = ", xsrf);
+        // window.sessionStorage.setItem('XSRF-TOKEN', xsrf);
         this.loginForm.reset();
         this.router.navigate(['/home']);
       })
