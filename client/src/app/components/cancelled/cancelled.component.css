@@ -1,0 +1,12 @@
+.success-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+mat-card {
+  max-width: 500px;
+}
+mat-progress-bar {
+  margin-top: 20px;
+}

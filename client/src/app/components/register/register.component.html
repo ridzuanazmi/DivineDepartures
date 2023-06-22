@@ -9,26 +9,14 @@
     <mat-card-content>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-        <!-- First Name Input -->
+        <!-- Full Name Input -->
         <mat-form-field class="field-style" appearance="fill">
-          <mat-label>First Name</mat-label>
-          <input matInput type="text" placeholder="Enter first name" formControlName="firstName">
-          <mat-error *ngIf="submitted && registerForm.get('firstName')?.hasError('minlength')">
+          <mat-label>Full Name</mat-label>
+          <input matInput type="text" placeholder="Enter full name" formControlName="fullName">
+          <mat-error *ngIf="submitted && registerForm.get('fullName')?.hasError('minlength')">
             Min 2 characters long.
           </mat-error>
-          <mat-error *ngIf="submitted && registerForm.get('firstName')?.hasError('required')">
-            Required field
-          </mat-error>
-        </mat-form-field>
-
-        <!-- Last Name Input -->
-        <mat-form-field class="field-style" appearance="fill">
-          <mat-label>Last Name</mat-label>
-          <input matInput type="text" placeholder="Enter last name" formControlName="lastName">
-          <mat-error *ngIf="submitted && registerForm.get('lastName')?.hasError('minlength')">
-            Min 2 characters long.
-          </mat-error>
-          <mat-error *ngIf="submitted && registerForm.get('lastName')?.hasError('required')">
+          <mat-error *ngIf="submitted && registerForm.get('fullName')?.hasError('required')">
             Required field
           </mat-error>
         </mat-form-field>
@@ -45,19 +33,66 @@
           </mat-error>
         </mat-form-field>
 
+        <!-- Phone Number Input -->
+        <mat-form-field class="field-style" appearance="fill">
+          <mat-label>Phone Number</mat-label>
+          <input matInput type="text" placeholder="Enter Phone Number" formControlName="phoneNumber">
+          <mat-error *ngIf="submitted && registerForm.get('phoneNumber')?.hasError('minlength')">
+            Min 4 characters long.
+          </mat-error>
+          <mat-error *ngIf="submitted && registerForm.get('phoneNumber')?.hasError('required')">
+            Required field
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Role Input -->
+        <mat-form-field class="field-style" appearance="fill">
+          <mat-label>Role</mat-label>
+          <mat-select matInput id="role" formControlName="role" required>
+            <mat-option value="USER">USER</mat-option>
+            <mat-option value="ADMIN">ADMIN</mat-option>
+          </mat-select>
+          <mat-error *ngIf="submitted && registerForm.get('role')?.hasError('required')">
+            Required field
+          </mat-error>
+        </mat-form-field>
+
         <!-- Password Input -->
         <mat-form-field class="field-style" appearance="fill">
           <mat-label>Password</mat-label>
-          <input matInput [type]="registerForm.get('hidePassword')?.value ? 'text' : 'password'" placeholder="Enter password" formControlName="password">
+          <input matInput [type]="registerForm.get('hidePassword')?.value ? 'text' : 'password'"
+            placeholder="Enter password" formControlName="password">
+          <mat-hint>Password must contain at least 8 characters, 1 uppercase, 1 numeric and 1 special
+            character</mat-hint>
           <mat-error *ngIf="submitted && registerForm.get('password')?.errors?.['passwordStrength']">
-            Password requirements not met.
+            <ng-container
+              *ngIf="registerForm.get('password')?.errors?.['passwordStrength']?.hasMinLength; else minLengthError">Min
+              length 8 not met.</ng-container>
+            <ng-template #minLengthError>
+              <ng-container
+                *ngIf="registerForm.get('password')?.errors?.['passwordStrength']?.hasUpperCase; else upperCaseError">No
+                uppercase letter.</ng-container>
+              <ng-template #upperCaseError>
+                <ng-container
+                  *ngIf="registerForm.get('password')?.errors?.['passwordStrength']?.hasNumeric; else numericError">No
+                  numeric digit.</ng-container>
+                <ng-template #numericError>
+                  <ng-container
+                    *ngIf="registerForm.get('password')?.errors?.['passwordStrength']?.hasSpecialChar; else specialCharError">No
+                    special character.</ng-container>
+                  <ng-template #specialCharError>Password requirement not met.</ng-template>
+                </ng-template>
+              </ng-template>
+            </ng-template>
           </mat-error>
         </mat-form-field>
+
 
         <!-- Confirm Password Input -->
         <mat-form-field class="field-style" appearance="fill">
           <mat-label>Confirm Password</mat-label>
-          <input matInput [type]="registerForm.get('hidePassword')?.value ? 'text' : 'password'" placeholder="Re-enter password" formControlName="confirmPassword">
+          <input matInput [type]="registerForm.get('hidePassword')?.value ? 'text' : 'password'"
+            placeholder="Re-enter password" formControlName="confirmPassword">
           <mat-error *ngIf="submitted && registerForm.get('confirmPassword')?.hasError('required')">
             Required field
           </mat-error>
@@ -69,7 +104,7 @@
         <mat-checkbox formControlName="hidePassword">Show Password</mat-checkbox>
         <div style="float: right;">
 
-          <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">Submit</button>
+          <button mat-raised-button color="primary" type="submit">Submit</button>
         </div>
 
       </form>
@@ -82,20 +117,20 @@
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
   <div>
-    <label for="firstName">First Name:</label><br>
-    <input type="text" name="firstName" placeholder="Enter first name" formControlName="firstName"><br>
+    <label for="fullName">First Name:</label><br>
+    <input type="text" name="fullName" placeholder="Enter first name" formControlName="fullName"><br>
     <div *ngIf="submitted">
-      <small style="color: crimson" *ngIf="registerForm.get('firstName')?.hasError('minlength')">Min 2 characters long.</small>
-      <small style="color: crimson" *ngIf="registerForm.get('firstName')?.hasError('required')">Required field</small>
+      <small style="color: crimson" *ngIf="registerForm.get('fullName')?.hasError('minlength')">Min 2 characters long.</small>
+      <small style="color: crimson" *ngIf="registerForm.get('fullName')?.hasError('required')">Required field</small>
     </div>
   </div>
   <br>
   <div>
-    <label for="lastName">Last Name:</label><br>
-    <input type="text" name="lastName" formControlName="lastName"><br>
+    <label for="phoneNumber">Phone Number:</label><br>
+    <input type="text" name="phoneNumber" formControlName="phoneNumber"><br>
     <div *ngIf="submitted">
-      <small style="color: crimson" *ngIf="registerForm.get('lastName')?.hasError('minlength')">Min 2 characters long.</small>
-      <small style="color: crimson" *ngIf="registerForm.get('lastName')?.hasError('required')">Required field</small>
+      <small style="color: crimson" *ngIf="registerForm.get('phoneNumber')?.hasError('minlength')">Min 2 characters long.</small>
+      <small style="color: crimson" *ngIf="registerForm.get('phoneNumber')?.hasError('required')">Required field</small>
     </div>
   </div>
   <br>

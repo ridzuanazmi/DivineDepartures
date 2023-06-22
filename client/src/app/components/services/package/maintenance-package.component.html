@@ -1,0 +1,62 @@
+<app-header></app-header>
+
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Grave Maintenance Services</mat-card-title>
+      <mat-card-subtitle>At Divine Departures, we understand the importance of respecting and maintaining the final
+        resting places of
+        your
+        loved ones. Our grave maintenance services are carried out with the utmost care and dignity. We offer services
+        such as gravestone cleaning, grass trimming and more.</mat-card-subtitle>
+    </mat-card-header>
+    <ngb-carousel style="height: 400px; width: 600px;margin-top: 10px;margin-bottom: 10px;">
+      <ng-template ngbSlide>
+        <div class="image-wrapper">
+          <img src="assets\images\maintenance\package1.jpg" alt="first-slide.jpg">
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="image-wrapper">
+          <img src="assets\images\maintenance\maintenance5.JPG" alt="second-slide.jpg">
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="image-wrapper">
+          <img src="assets\images\maintenance\maintenance4.JPG" alt="third-slide.jpg">
+        </div>
+      </ng-template>
+    </ngb-carousel>
+    <hr>
+    <mat-card-content>
+      <form [formGroup]="mpForm">
+        <h2>Our Packages</h2>
+        <h3>Quarterly Package</h3>
+        <p>For our Quarterly Package, we provide comprehensive maintenance services every month for a period of three
+          months. We ensure the grave remains a serene and dignified memorial. The cost for this package is $300.</p>
+
+        <h3>Annual Package</h3>
+        <p>Our Annual Package is a premium service that provides meticulous upkeep of the grave throughout the year.
+          This includes seasonal care appropriate for each time of the year. The cost for this package is $1000.</p>
+          <hr>
+        <h3><strong>Enter grave details</strong></h3>
+        <mat-form-field class="full-width-input">
+          <mat-label>Block Number</mat-label>
+          <input matInput placeholder="E.g. N-12-123" formControlName="blockNumber">
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <mat-label>Plot Number</mat-label>
+          <input matInput placeholder="E.g. 623" formControlName="plotNumber">
+        </mat-form-field>
+        <button mat-raised-button color="primary" style="margin-right: 5px;"
+        (click)="checkoutMonthly(mpForm.value.plotNumber, mpForm.value.blockNumber)">
+          $300/quarter
+        </button>
+        <button mat-raised-button color="warn"
+        (click)="checkoutYearly(mpForm.value.plotNumber, mpForm.value.blockNumber)">
+          $1000/annual
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -29,9 +29,8 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
-
-    private String firstName;
-    private String lastName;
+    private String fullName;
+    private String phoneNumber;
     @Column(unique = true)
     private String email;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -47,17 +46,17 @@ public class User implements UserDetails {
     // Constructors
     public User() {
     }
-    public User(Integer userId, String firstName, String lastName, String email, String password, Date createdDate,
-            Role role) {
+    public User(Integer userId, String fullName, String phoneNumber, String email, String password, Date createdDate,
+            Role role, List<Shop> shops) {
         this.userId = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
         this.createdDate = createdDate;
         this.role = role;
+        this.shops = shops;
     }
-
     // Getters and Setters
     public Integer getUserId() {
         return userId;
@@ -65,17 +64,17 @@ public class User implements UserDetails {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
-    public String getLastName() {
-        return lastName;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
     public String getEmail() {
         return email;
@@ -108,13 +107,12 @@ public class User implements UserDetails {
         this.shops = shops;
     }
 
-    // toString
     @Override
     public String toString() {
-        return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-                + ", password=" + password + ", createdDate=" + createdDate + ", role=" + role + "]";
+        return "User [userId=" + userId + ", fullName=" + fullName + ", phoneNumber=" + phoneNumber + ", email=" + email
+                + ", password=" + password + ", createdDate=" + createdDate + ", role=" + role + ", shops=" + shops
+                + "]";
     }
-
     // UserDetails methods
     // Returns a list of roles 
     @Override
@@ -157,8 +155,8 @@ public class User implements UserDetails {
     public static class UserBuilder {
 
         private Integer userId;
-        private String firstName;
-        private String lastName;
+        private String fullName;
+        private String phoneNumber;
         private String email;
         @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
         private String password;
@@ -172,12 +170,12 @@ public class User implements UserDetails {
             this.userId = userId;
             return this;
         }
-        public UserBuilder firstName(String firstName) {
-            this.firstName = firstName;
+        public UserBuilder fullName(String fullName) {
+            this.fullName = fullName;
             return this;
         }
-        public UserBuilder lastName(String lastName) {
-            this.lastName = lastName;
+        public UserBuilder phoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
             return this;
         }
         public UserBuilder email(String email) {
@@ -200,8 +198,8 @@ public class User implements UserDetails {
         public User build() {
             User user = new User();
             user.userId = this.userId;
-            user.firstName = this.firstName;
-            user.lastName = this.lastName;
+            user.fullName = this.fullName;
+            user.phoneNumber = this.phoneNumber;
             user.email = this.email;
             user.password = this.password;
             user.createdDate = this.createdDate;
@@ -209,7 +207,6 @@ public class User implements UserDetails {
             return user;
         }
     }
-
     public static UserBuilder builder() {
         return new UserBuilder();
     }

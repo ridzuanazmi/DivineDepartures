@@ -1,10 +1,17 @@
 .top-header {
   height: 70px;
-  position: relative;
+  position: absolute;
 }
 
 .mat-toolbar {
   display: flex;
+  background-color: cornflowerblue;
+  color: aliceblue;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  /* Ensures the toolbar stays above other content when scrolling. */
 }
 
 .nav-link {

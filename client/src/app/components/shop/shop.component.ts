@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Shop } from 'src/app/models/models';
 import { AuthService } from 'src/app/services/auth.service';
 import { ShopService } from 'src/app/services/shop.service';
@@ -22,7 +23,8 @@ export class ShopComponent implements OnInit {
     private datePipe: DatePipe,
     private authSrvc: AuthService,
     private shopSrvc: ShopService,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.shopForm = this.createForm();
@@ -46,7 +48,9 @@ export class ShopComponent implements OnInit {
       curvedMosaicTile: formValue.sections[1].curvedMosaicTile,
       topCover: formValue.sections[1].topCover,
       plant: formValue.sections[1].plant,
-      email: this.authSrvc.getEmailFromJwt()
+      email: this.authSrvc.getEmailFromJwt(),
+      fullName: this.authSrvc.getNameFromJwt(),
+      phoneNumber: this.authSrvc.getPhoneNumberFromJWT()
     };
     console.log('shop info:', shop);
 
@@ -54,14 +58,19 @@ export class ShopComponent implements OnInit {
       .then((response) => {
         console.log("Response from server: ", response);
         this.shopForm.reset();
+        // navigate to the new route
+        this.router.navigate(['/home']);
+        // show snackbar on the new route
         this.snackBar.open('Order placed successfully!', 'Close', {
-          duration: 2000,
+          duration: 5000,
+          verticalPosition: 'top', // Positioning it at the top
         });
       })
       .catch(err => {
         // Display an error message
         this.snackBar.open('Failed to place the order. Please try again.', 'Close', {
           duration: 3000,
+          verticalPosition: 'top', // Positioning it at the top
         });
         console.log("Error occurred: ", err);
       })

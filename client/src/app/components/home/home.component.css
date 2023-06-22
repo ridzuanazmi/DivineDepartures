@@ -1,3 +1,68 @@
+.container {
+  font-family: Arial, sans-serif;
+  color: #333;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  min-height: calc(100vh - 120px); /* Replace 100px with the height of your footer */
+}
+
 .center {
+  text-align: center;
+}
+
+.title, .subtitle {
+  color: #444;
+}
+
+.subtitle {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+.section-title {
+  text-align: center;
+  color: #444;
+  margin-top: 40px;
+}
+
+.services-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.service-item {
+  width: 48%;
+  margin-bottom: 20px;
+}
+
+.service-title {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.service-description {
+  font-size: 1em;
+  color: #666;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.learn-more-button, .contact-button {
+  background-color: #444;
+  color: #fff;
+}
+
+.contact-section {
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.contact-description {
   text-align: center;
 }

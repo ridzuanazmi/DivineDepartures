@@ -12,22 +12,10 @@ public class Contact {
     private String contactId;
     private String contactName;
     private String contactEmail;
+    private String phoneNumber;
     private String message;
     private String subject;
     private String createDate;
-
-    // Constructors
-    public Contact(String contactId, String contactName, String contactEmail, String message, String subject,
-            String createDate) {
-        this.contactId = contactId;
-        this.contactName = contactName;
-        this.contactEmail = contactEmail;
-        this.message = message;
-        this.subject = subject;
-        this.createDate = createDate;
-    }
-    public Contact() {
-    }
 
     // Getters and Setters
     public String getContactId() {
@@ -66,7 +54,12 @@ public class Contact {
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
-    
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
     // toString()
     @Override
     public String toString() {

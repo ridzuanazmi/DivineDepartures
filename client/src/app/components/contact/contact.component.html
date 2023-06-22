@@ -1,13 +1,6 @@
 <app-header></app-header>
 
 <div class="content">
-  <div class="google-map-container" id="map">
-    <p class="location-description"><mat-icon> place</mat-icon>We are located at 550 Choa Chu Kang St 52</p>
-    <google-map [center]="center" style="position: relative;">
-      <map-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition"></map-marker>
-    </google-map>
-  </div>
-
   <div class="container">
     <span class="text-success" *ngIf="contact?.contactId">Your message is submitted. Reference ID is
       {{contact.contactId}}</span>
@@ -31,6 +24,11 @@
             </mat-form-field>
 
             <mat-form-field appearance="outline" style="width: 100%;">
+              <mat-label>Phone Number</mat-label>
+              <input matInput placeholder="For WhatsApp" formControlName="phoneNumber">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 100%;">
               <mat-label>Subject</mat-label>
               <input matInput placeholder="Ex. Grave Cleaning Services" formControlName="subject">
             </mat-form-field>
@@ -41,12 +39,36 @@
             </mat-form-field>
 
             <div style="text-align: right;">
-              <button mat-raised-button color="primary" type="submit">Send</button>
+              <button mat-raised-button color="primary" type="submit" [disabled]="contactForm.invalid">Send</button>
             </div>
           </form>
         </mat-card-content>
       </mat-card>
     </div>
+  </div>
+  <div class="container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Office location</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <google-map [center]="center" style="position: relative;">
+          <map-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition"></map-marker>
+        </google-map>
+        <p class="location-description">
+          <mat-icon class="custom-icon-color">place</mat-icon>
+          <span>We are located at 550 Choa Chu Kang St 52</span>
+        </p>
+
+        <p class="location-description">
+          <mat-icon class="custom-icon-color">call</mat-icon>
+          <span>Call us at +65 6666 7777</span>
+        </p>
+
+      </mat-card-content>
+    </mat-card>
 
   </div>
 </div>

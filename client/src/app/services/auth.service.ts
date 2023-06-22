@@ -63,12 +63,43 @@ export class AuthService {
     return sub;
   }
 
+  getNameFromJwt() {
+    const decodedToken = this.jwtHelper.decodeToken(this.getJwt()??""); // get the decoded JWT
+    console.info(">> authSrvc decoded token = ", decodedToken); // comment out for security
+    // Get name from JWT
+    const name = decodedToken.fullName;
+    console.log(">>> fullName from JWT = ", name);
+    return name;
+  }
+
+  getPhoneNumberFromJWT() {
+    const decodedToken = this.jwtHelper.decodeToken(this.getJwt()??""); // get the decoded JWT
+    console.info(">> authSrvc decoded token = ", decodedToken); // comment out for security
+    // Get name from JWT
+    const phoneNumber = decodedToken.phoneNumber;
+    console.log(">>> phoneNumber from JWT = ", phoneNumber);
+    return phoneNumber;
+  }
+
+  getRoleFromJwt() {
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(this.getJwt() ?? "");
+    console.info('>>> AuthSvc: getRole() decodedToken: ', decodedToken)
+    if (decodedToken) {
+      const roleStr = decodedToken['role']
+      const role = roleStr.substring(1, roleStr.length - 1)
+      console.info('>>> AuthSvc: getRole() role: ', role)
+      return role;
+    }
+    return "";
+  }
+
   getInfoFromJwt(): User {
     const decodedToken = this.jwtHelper.decodeToken(this.getJwt()??""); // get the decoded JWT
 
     let user: User = {
-      firstName: decodedToken.firstName,
-      lastName: decodedToken.lastName,
+      fullName: decodedToken.fullName,
+      phoneNumber: decodedToken.phoneNumber,
       email: decodedToken.sub
     };
 

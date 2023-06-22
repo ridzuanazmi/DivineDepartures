@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'src/app/services/auth.service';
-import { CsrfService } from 'src/app/services/csrf.service';
 import { LoginService } from 'src/app/services/login.service';
 import { getCookie } from 'typescript-cookie';
 
@@ -16,13 +14,13 @@ export class LoginComponent implements OnInit{
 
   loginForm!: FormGroup;
   submitted = false;
+  hide = true;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private loginSrvc: LoginService,
-    private authSrvc: AuthService,
-    private csrfSrvc: CsrfService) { }
+    private authSrvc: AuthService) { }
 
   ngOnInit(): void {
     this.loginForm = this.createForm();

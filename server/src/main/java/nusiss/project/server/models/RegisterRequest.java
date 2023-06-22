@@ -4,15 +4,15 @@ import nusiss.project.server.models.user.Role;
 
 public class RegisterRequest {
 
-    private String firstName;
-    private String lastName;
+    private String fullName;
+    private String phoneNumber;
     private String email;
     private String password;
     private Role role;
     
-    public RegisterRequest(String firstName, String lastName, String email, String password, Role role) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public RegisterRequest(String fullName, String phoneNumber, String email, String password, Role role) {
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
         this.role = role;
@@ -20,17 +20,17 @@ public class RegisterRequest {
     
     public RegisterRequest() {
     }
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
-    public String getLastName() {
-        return lastName;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
     public String getEmail() {
         return email;
@@ -53,7 +53,7 @@ public class RegisterRequest {
 
     @Override
     public String toString() {
-        return "RegisterRequest [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password="
+        return "RegisterRequest [fullName=" + fullName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", password="
                 + password + ", role=" + role + "]";
     }
 

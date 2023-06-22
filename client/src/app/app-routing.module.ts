@@ -16,25 +16,35 @@ import { UserComponent } from './components/user/user.component';
 import { SuccessComponent } from './components/success/success.component';
 import { CancelledComponent } from './components/cancelled/cancelled.component';
 import { CsrfComponent } from './components/csrf/csrf.component';
+import { MaintenancePackageComponent } from './components/services/package/maintenance-package.component';
+import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
+import { DeleteAccountComponent } from './components/dashboard/deleteAccount/delete-account.component';
+import { EditAccountComponent } from './components/dashboard/editAccount/edit-account.component';
+import { ErrorPageComponent } from './components/errorPage/error-page.component';
 
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
+  { path: "csrf", component: CsrfComponent },
   { path: "home", component: HomeComponent },
   { path: "login", component: LoginComponent },
+  { path: "register", component: RegisterComponent },
+  { path: "dashboard", component: DashboardComponent, canActivate: [ AuthGuard ], data: { isAdmin: true } },
+  { path: "dashboard/delete-account/:id", component: DeleteAccountComponent, canActivate: [ AuthGuard ], data: { isAdmin: true } },
+  { path: "dashboard/edit-account/:id", component: EditAccountComponent, canActivate: [ AuthGuard ], data: { isAdmin: true } },
   { path: "demo", component: DemoComponent },
   { path: "services", component: ServicesComponent },
   { path: "maintenance", component: MaintenanceComponent },
+  { path: "maintenance/package", component: MaintenancePackageComponent, canActivate: [ AuthGuard ] },
+  { path: "repair", component: RepairComponent },
   { path: "replacement", component: ReplacementComponent },
   { path: "success", component: SuccessComponent },
-  { path: "csrf", component: CsrfComponent },
   { path: "cancelled", component: CancelledComponent },
   { path: "user", component: UserComponent },
-  { path: "repair", component: RepairComponent },
   { path: "cart", component: CartComponent },
   { path: "shop", component: ShopComponent, canActivate: [ AuthGuard ] },
   { path: "contact-us", component: ContactComponent },
-  { path: "register", component: RegisterComponent },
+  { path: "error/no-access", component: ErrorPageComponent },
   { path: "**", redirectTo: "/", pathMatch: "full"}
 ];
 

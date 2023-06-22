@@ -18,7 +18,7 @@ import nusiss.project.server.models.user.User;
 public class Shop {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private String deceasedName;
   private String block;

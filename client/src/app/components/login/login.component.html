@@ -22,24 +22,21 @@
 
         <mat-form-field class="field-style" appearance="fill">
           <mat-label>Password</mat-label>
-          <input matInput [type]="loginForm.get('hidePassword')?.value ? 'text' : 'password'" name="password" id="password"
-          formControlName="password">
+          <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password"
+            required>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           <mat-error *ngIf="submitted && loginForm.get('password')?.hasError('required')">
             Please enter your password
           </mat-error>
         </mat-form-field>
-
-        <mat-checkbox formControlName="hidePassword">Show Password</mat-checkbox>
+        <div style="text-align: center; margin-top: 20px;">
+          <p>Don't have an account with us? <a routerLink="/register">Sign up now</a></p>
+        </div>
         <div style="float: right;">
           <button mat-raised-button color="primary" type="submit">Login</button>
-        </div>
-
-        <div>
-
         </div>
 
       </form>
     </mat-card-content>
   </mat-card>
 </div>
-

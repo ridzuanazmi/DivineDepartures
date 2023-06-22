@@ -1,8 +1,8 @@
 <div class="top-header">
-  <mat-toolbar color="primary">
+  <mat-toolbar>
     <a id="app-name" routerLink="/home" style="color: inherit; text-decoration: none;">
-      <img src="assets\images\divine-departures-low-resolution-logo-color-on-transparent-background.png" alt="logo.png"
-        width="280px" height="40px">
+      <img src="assets\images\logo2.png" alt="logo.png"
+        width="160px" height="45px">
     </a>
 
     <div class="center-nav-links">
@@ -12,7 +12,6 @@
       <a *ngIf="!isLoggedIn" mat-button routerLink="/register" class="nav-link">
         Sign up
       </a>
-
       <a mat-button routerLink="/shop" class="nav-link">
         Order Online
       </a>
@@ -25,8 +24,8 @@
         <button mat-menu-item routerLink="/replacement">Replacement</button>
         <button mat-menu-item routerLink="/maintenance">Maintenance</button>
       </mat-menu>
-      <a mat-button routerLink="/cart" class="nav-link">
-        Cart
+      <a mat-button *ngIf="isLoggedIn" routerLink="/dashboard" class="nav-link">
+        Dashboard
       </a>
       <a mat-button routerLink="/contact-us" class="nav-link">
         Contact Us
@@ -44,7 +43,6 @@
         <button mat-menu-item *ngIf="!isLoggedIn" routerLink="/register">Sign up</button>
         <button mat-menu-item routerLink="/shop">Order Online</button>
         <button mat-menu-item routerLink="/services">Services</button>
-        <button mat-menu-item routerLink="/cart">Cart</button>
         <button mat-menu-item routerLink="/contact-us">Contact Us</button>
         <button mat-menu-item *ngIf="isLoggedIn" (click)="logout()">Logout</button>
       </mat-menu>

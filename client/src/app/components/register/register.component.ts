@@ -48,12 +48,12 @@ export class RegisterComponent implements OnInit {
 
   private createForm(): FormGroup {
     return this.fb.group({
-      firstName: ['', [
+      fullName: ['', [
         Validators.required,
         Validators.minLength(2)]],
-      lastName: ['', [
+      phoneNumber: ['', [
         Validators.required,
-        Validators.minLength(2)]],
+        Validators.minLength(4)]],
       email: ['', [
         Validators.required,
         Validators.email]],
@@ -62,6 +62,8 @@ export class RegisterComponent implements OnInit {
         PasswordStrengthValidator()
         ]],
       confirmPassword: ['',
+        Validators.required,],
+      role: ['USER',
         Validators.required,],
       hidePassword: ['']
     },

@@ -64,15 +64,13 @@
 
     <mat-card-actions style="display: flex; justify-content: space-between;">
       <div>
-        <button mat-raised-button color="primary" style="margin-right: 5px;" (click)="checkoutMonthly()">
-          Pay $100 per month
-        </button>
-        <button mat-raised-button color="warn" (click)="checkoutYearly()">
-          Pay $1100 per year
+        <button mat-raised-button color="primary" style="margin-right: 5px;"
+        [routerLink]="['/maintenance/package']">
+          Maintenance package
         </button>
       </div>
       <div>
-        <button mat-raised-button color="primary" routerLink="/contact-us">Contact Us For More Info</button>
+        <button mat-raised-button color="primary" routerLink="/contact-us">Contact us for more info</button>
       </div>
     </mat-card-actions>
 

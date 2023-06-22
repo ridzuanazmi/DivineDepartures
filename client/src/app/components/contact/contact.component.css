@@ -1,3 +1,7 @@
+.content {
+  min-height: calc(100vh - 120px); /* Replace 100px with the height of your footer */
+}
+
 body {
   margin: 0;
   height: 100vh;
@@ -50,12 +54,20 @@ body {
 }
 
 .contact-card {
-  max-width: 900px;
+  max-width: 500px;
   width: 100%;
   border-radius: 15px;
 }
 
-@media (min-width: 800px) {
+custom-icon-color {
+  color: red; /* replace with any color you want */
+}
+
+.custom-text-color {
+  color: blue; /* replace with any color you want */
+}
+
+@media (min-width: 1024px) {
   .content {
     flex-direction: row;
     justify-content: center;

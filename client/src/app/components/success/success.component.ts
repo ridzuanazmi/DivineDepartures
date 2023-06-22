@@ -20,7 +20,7 @@ export class SuccessComponent implements OnInit {
       console.info("csrf: ", response)
       setTimeout(() => {
         this.router.navigate(['/home']);
-      }, 3000); // Redirect after 3 seconds
+      }, 5000); // Redirect after 3 seconds
       // Get CSRF cookie from Spring
       // let xsrf = getCookie('XSRF-TOKEN')!;
       // console.info("XSRF-TOKEN = ", xsrf);

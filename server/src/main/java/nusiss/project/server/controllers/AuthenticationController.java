@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,38 +35,24 @@ public class AuthenticationController {
     public ResponseEntity<String> register(
             @RequestBody RegisterRequest request) {
 
+        LOGGER.info("POST /auth/register - Start - RegisterRequest: {}", request);
         try {
             String response = authSrvc.register(request);
             if (response.contains("successful")) {
-
                 // Send email on successful registration
-                String userEmail = request.getEmail();
-                String subject = "Welcome to Divine Departures";
-                String message = "Dear " + request.getLastName() + ", " + request.getFirstName() + ",\n\n" +
-                        "Thank you for registering with Divine Departures. We are delighted to have you join our community.\n\n"
-                        +
-                        "At Divine Departures, we are committed to helping you honour your loved ones with dignity and respect. We offer a range of services including grave maintenance, memorial services, grave decoration, and custom tombstones. Each of these services is delivered with the utmost professionalism and care, ensuring that your loved ones' final resting place is a fitting tribute to their life.\n\n"
-                        +
-                        "You can learn more about our services on our website. And if you have any questions or require further assistance, please do not hesitate to get in touch with us. Our team is here to assist you every step of the way.\n\n"
-                        +
-                        "Once again, thank you for choosing Divine Departures. We look forward to serving you.\n\n" +
-                        "Best Regards,\n\n" +
-                        "The Divine Departures Team\n\n" +
-                        "This is an automated message, please do not reply to this email.";
-                // Send email and log if successful or not
-                try {
-                    emailSrvc.sendWelcomeEmail(userEmail, subject, message);
-                } catch (MailException e) {
-                    LOGGER.error("Failed to send welcome email", e);
-                }
-                // Return successfully created 
+                emailSrvc.sendWelcomeEmail(request);
+                LOGGER.info("POST /auth/register - Successful registration - Response: {}", response);
+                // Return successfully created
                 return ResponseEntity.status(HttpStatus.CREATED).body(response);
             } else {
+                LOGGER.info("POST /auth/register - Registration not successful - Response: {}", response);
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
             }
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("{\"message\":\"Error occurred while processing the request.\"}");
+        } finally {
+            LOGGER.info("POST /auth/register - End");
         }
     }
 

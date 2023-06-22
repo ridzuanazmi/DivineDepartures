@@ -1,0 +1,17 @@
+<app-header></app-header>
+
+<div class="delete-account-container">
+  <mat-card class="mat-elevation-z5">
+    <mat-card-content>
+      <h2><b>Confirmation</b></h2>
+      <p class="warning-text">Are you sure you want to delete the account with ID {{id}}?</p>
+      <p style="color: red; font-size: 20px; background-color: yellow; text-align: center; border: 2px solid black; padding: 10px;">
+        <strong>WARNING this will delete all the order info in the database for the corresponding user</strong>
+      </p>
+      <div class="button-group">
+        <button mat-raised-button color="primary" (click)="yesDelete(id)">Yes</button>
+        <button mat-raised-button color="warn" (click)="noDelete()">No</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

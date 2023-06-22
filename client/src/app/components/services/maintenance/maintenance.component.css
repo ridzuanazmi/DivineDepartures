@@ -1,4 +1,8 @@
 /* CSS */
+.container {
+  margin-top: 50px;
+}
+
 ngb-carousel {
   margin: auto;
 }

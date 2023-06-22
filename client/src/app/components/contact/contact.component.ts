@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
-import { Contact } from 'src/app/models/models';
+import { Contact, User } from 'src/app/models/models';
+import { AuthService } from 'src/app/services/auth.service';
 import { ContactService } from 'src/app/services/contact.service';
 import { CsrfService } from 'src/app/services/csrf.service';
-import { getCookie } from 'typescript-cookie';
 
 @Component({
   selector: 'app-contact',
@@ -12,12 +12,14 @@ import { getCookie } from 'typescript-cookie';
 })
 export class ContactComponent implements OnInit {
 
+  user!: User;
   contactForm!: FormGroup;
   submitted = false;
   contact: Contact = {
     contactId: '',
     contactName: '',
     contactEmail: '',
+    phoneNumber: '',
     subject: '',
     message: ''
   };
@@ -27,9 +29,13 @@ export class ContactComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private contactSrvc: ContactService,
-    private csrfSrvc: CsrfService) { }
+    private csrfSrvc: CsrfService,
+    private authSrvc: AuthService) { }
 
   ngOnInit(): void {
+    if (this.authSrvc.isLoggedIn()) {
+      this.user = this.authSrvc.getInfoFromJwt();
+    }
     this.contactForm = this.createForm();
   }
 
@@ -54,7 +60,7 @@ export class ContactComponent implements OnInit {
             // }, 2000);
           })
           .catch(err => {
-            console.info("redirect error: ", err)
+            console.info("csrf error: ", err)
           });
       })
       .catch(error => {
@@ -67,29 +73,11 @@ export class ContactComponent implements OnInit {
 
   private createForm(): FormGroup {
     return this.fb.group({
-      contactName: ['',
-        [
-          Validators.required,
-          Validators.minLength(2)
-        ]
-      ],
-      contactEmail: ['',
-        [
-          Validators.required,
-          Validators.email
-        ]
-      ],
-      subject: ['',
-        [
-          Validators.required,
-          Validators.minLength(2),
-        ]
-      ],
-      message: ['',
-        [
-          Validators.required
-        ]
-      ]
+      contactName: [this.user ? this.user.fullName : '', [Validators.required, Validators.minLength(2)]],
+      contactEmail: [this.user ? this.user.email : '', [Validators.required, Validators.email]],
+      subject: ['', [ Validators.required, Validators.minLength(2) ]],
+      message: ['', [ Validators.required]],
+      phoneNumber: [this.user ? this.user.phoneNumber : '', [ Validators.required ]]
     })
   }
 

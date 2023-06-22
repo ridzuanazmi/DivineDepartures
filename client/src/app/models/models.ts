@@ -1,6 +1,6 @@
 export interface RegisterRequest {
-  firstName: string,
-  lastName: string,
+  fullName: string,
+  phoneNumber: string,
   email: string,
   password: string,
   confirmPassword: string,
@@ -20,15 +20,24 @@ export interface LoginResponse {
 };
 
 export interface User {
-  firstName: string
-  lastName: string
+  fullName: string
+  phoneNumber: string
   email: string
+};
+export interface Account {
+  userId: number
+  fullName: string
+  phoneNumber: string
+  email: string
+  createdDate: string
+  role: string
 };
 
 export interface Contact {
   contactId: string
   contactName: string
   contactEmail: string
+  phoneNumber: string
   subject: string
   message: String
 };
@@ -45,6 +54,8 @@ export interface Shop {
   topCover: string; // e.g. carpet grass, pebbles
   plant: string; // e.g. jasmine plant
   email?: string // Optional
+  fullName?: string // Optional
+  phoneNumber?: string // Optional
 };
 
 export interface BillingDetails {

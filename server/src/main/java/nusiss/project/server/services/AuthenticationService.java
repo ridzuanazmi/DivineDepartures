@@ -17,7 +17,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import nusiss.project.server.models.AuthenticationRequest;
 import nusiss.project.server.models.AuthenticationResponse;
 import nusiss.project.server.models.RegisterRequest;
-import nusiss.project.server.models.user.Role;
 import nusiss.project.server.models.user.User;
 import nusiss.project.server.repositories.UserRepository;
 
@@ -58,13 +57,13 @@ public class AuthenticationService {
                         }
                 }
                 var user = User.builder()
-                                .firstName(request.getFirstName())
-                                .lastName(request.getLastName())
+                                .fullName(request.getFullName())
+                                .phoneNumber(request.getPhoneNumber())
                                 .email(request.getEmail())
                                 .password(passwordEncoder.encode(request.getPassword())) // Encrypt the password to be
                                                                                          // stored safely in DB
                                 .createdDate(new Date(System.currentTimeMillis()))
-                                .role(Role.USER) // Sets the role to user all the time
+                                .role(request.getRole()) // Sets the role to user all the time
                                 .build();
                 userRepo.save(user); // Save the User object into MySQL
 
@@ -106,8 +105,8 @@ public class AuthenticationService {
 
                 Map<String, Object> extraClaims = new HashMap<>();
                 extraClaims.put("id", user.getUserId());
-                extraClaims.put("firstName", user.getFirstName());
-                extraClaims.put("lastName", user.getLastName());
+                extraClaims.put("fullName", user.getFullName());
+                extraClaims.put("phoneNumber", user.getPhoneNumber());
 
                 var jwtToken = jwtSrvc.generateToken(extraClaims ,user); // to generate token from the request
 
