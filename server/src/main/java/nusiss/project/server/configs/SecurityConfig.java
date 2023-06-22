@@ -40,7 +40,7 @@ public class SecurityConfig {
                 .cors()
                 .and()
                 .csrf((csrf) -> csrf.csrfTokenRequestHandler(requestHandler)
-                    .ignoringRequestMatchers("/auth/register") // ignores request so CSRF is disabled only here
+                    .ignoringRequestMatchers("/auth/register", "/**") // ignores request so CSRF is disabled only here
                     .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())) // Persists the CSRF token in a cookie with the default name and can read the cookie value in Angular
                     .addFilterAfter(new CsrfCookieFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests()
