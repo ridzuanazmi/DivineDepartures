@@ -18,7 +18,7 @@ export class MaintenanceService {
 
     return firstValueFrom(
       this.http.post<StripeId>(
-        'http://localhost:8080/payment/maintenance',
+        '/payment/maintenance',
         checkout,
         { headers: headers, withCredentials: true })
     );

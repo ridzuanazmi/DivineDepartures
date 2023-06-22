@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class DemoComponent implements OnInit{
 
   message!: string;
-  private demoUrl = 'http://localhost:8080/demo';  // URL to web api
+  private demoUrl = '/demo';  // URL to web api
 
   constructor(private http: HttpClient) { }
 

@@ -16,7 +16,7 @@ export class RegisterService {
       .set('Accept', 'application/json');
 
     return firstValueFrom(
-      this.http.post<RegisterResponse>('http://localhost:8080/auth/register',
+      this.http.post<RegisterResponse>('/auth/register',
       registerReq,
       { headers, withCredentials: true })
     );

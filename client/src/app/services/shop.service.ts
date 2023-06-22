@@ -17,7 +17,7 @@ export class ShopService {
 
     return firstValueFrom(
       this.http.post<any>(
-        'http://localhost:8080/email/shop', shop,
+        '/email/shop', shop,
         { headers: headers, withCredentials: true })
     );
   }

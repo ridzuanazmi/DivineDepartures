@@ -11,7 +11,7 @@ export class CsrfService {
 
   csrf(): Promise<any> {
     return firstValueFrom(
-      this.http.get('http://localhost:8080/csrf',
+      this.http.get('/csrf',
       { withCredentials: true })
     )
   }

@@ -58,8 +58,8 @@ export class MaintenancePackageComponent implements OnInit {
 
     const checkout = {
       priceId: priceId,
-      successUrl: 'http://localhost:4200/success',
-      cancelUrl: 'http://localhost:4200/cancelled',
+      successUrl: '/success',
+      cancelUrl: '/cancelled',
       blockNumber: blockNumber,
       plotNumber: plotNumber,
       // Get info if user is logged in

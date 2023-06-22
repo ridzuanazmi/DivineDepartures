@@ -18,7 +18,7 @@ export class ContactService {
 
     return firstValueFrom(
       this.http.post<Contact>(
-        'http://localhost:8080/contact-us',
+        '/contact-us',
         contact,
         { headers: headers, withCredentials: true})
     );

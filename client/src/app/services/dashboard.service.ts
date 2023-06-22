@@ -14,7 +14,7 @@ export class DashboardService {
   // HTTP GET request to server to get an account in DB
   getAccountById(id: number): Promise<Account> {
     return firstValueFrom(
-      this.http.get<Account>(`http://localhost:8080/dashboard/accounts/${id}`,
+      this.http.get<Account>(`/dashboard/accounts/${id}`,
       { withCredentials: true })
     );
   }
@@ -26,7 +26,7 @@ export class DashboardService {
       .set('Accept', 'application/json');
 
     return firstValueFrom<Account[]>(
-      this.http.get<Account[]>('http://localhost:8080/dashboard/accounts',
+      this.http.get<Account[]>('/dashboard/accounts',
         { headers: headers, withCredentials: true })
     );
   }
@@ -35,7 +35,7 @@ export class DashboardService {
   public deleteAccount(id: number): Promise<any> {
 
     return firstValueFrom(
-      this.http.delete(`http://localhost:8080/dashboard/accounts/${id}`,
+      this.http.delete(`/dashboard/accounts/${id}`,
       { withCredentials: true, responseType: 'text'})
     );
   }
@@ -43,7 +43,7 @@ export class DashboardService {
   // HTTP PUT request to server to update an account in DB
   updateAccount(id: number, user: Account): Promise<any> {
     return firstValueFrom(
-      this.http.put(`http://localhost:8080/dashboard/accounts/${id}`, user,
+      this.http.put(`/dashboard/accounts/${id}`, user,
       { withCredentials: true, responseType: 'text'})
     );
   }

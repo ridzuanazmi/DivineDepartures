@@ -17,7 +17,7 @@ export class LoginService {
 
     return firstValueFrom(
       this.http.post<LoginResponse>(
-        'http://localhost:8080/auth/authenticate',
+        '/auth/authenticate',
         loginReq,
         { headers: headers, withCredentials: true })
     );
