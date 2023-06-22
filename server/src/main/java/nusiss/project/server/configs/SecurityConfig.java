@@ -44,7 +44,7 @@ public class SecurityConfig {
                     .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())) // Persists the CSRF token in a cookie with the default name and can read the cookie value in Angular
                     .addFilterAfter(new CsrfCookieFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests()
-                    .requestMatchers("/auth/**","/contact-us", "/csrf").permitAll() // whitelists the specified request matchers
+                    .requestMatchers("/auth/**","/contact-us", "/csrf", "/**").permitAll() // whitelists the specified request matchers
                     .anyRequest().authenticated() // any other requests needs to be authenticated
                 .and() // .and() to add new config
                 .authenticationProvider(authenticationProvider)
@@ -56,7 +56,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        config.setAllowedOrigins(Arrays.asList("*"));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowCredentials(true);
         config.setAllowedHeaders(Arrays.asList("*"));
