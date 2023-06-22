@@ -15,7 +15,7 @@ public class Contact {
     private String phoneNumber;
     private String message;
     private String subject;
-    private String createDate;
+    private String createdDate;
 
     // Getters and Setters
     public String getContactId() {
@@ -48,11 +48,11 @@ public class Contact {
     public void setSubject(String subject) {
         this.subject = subject;
     }
-    public String getCreateDate() {
-        return createDate;
+    public String getCreatedDate() {
+        return createdDate;
     }
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
     }
     public String getPhoneNumber() {
         return phoneNumber;
@@ -64,6 +64,6 @@ public class Contact {
     @Override
     public String toString() {
         return "Contact [contactId=" + contactId + ", contactName=" + contactName + ", contactEmail=" + contactEmail
-                + ", message=" + message + ", subject=" + subject + ", createDate=" + createDate + "]";
+                + ", message=" + message + ", subject=" + subject + ", createdDate=" + createdDate + "]";
     }    
 }

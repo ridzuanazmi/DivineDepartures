@@ -60,7 +60,7 @@ public class EmailService {
         "Email: " + contact.getContactEmail() + "\n" +
         "Subject: " + contact.getSubject() + "\n" +
         "Message: " + contact.getMessage() + "\n" +
-        "Submitted On: " + contact.getCreateDate() + "\n\n" +
+        "Submitted On: " + contact.getCreatedDate() + "\n\n" +
         "Please review this message and take the necessary action ASAP.\n\n" +
         "Best Regards,\n\n" +
         "Automated Contact Form System\n\n" +

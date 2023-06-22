@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import nusiss.project.server.models.Contact;
+import nusiss.project.server.models.ContactDto;
 import nusiss.project.server.services.ContactService;
 import nusiss.project.server.services.EmailService;
 
@@ -34,33 +35,32 @@ public class ContactUsController {
     }
 
     @PostMapping
-    public ResponseEntity<String> saveContactInquiryDetails(@RequestBody Contact contact) {
-        LOGGER.info("POST /contact - Start - Contact: {}", contact);
+    public ResponseEntity<String> saveContactInquiryDetails(@RequestBody ContactDto contactDto) {
+        LOGGER.info("POST /contact - Start - ContactDto: {}", contactDto);
 
         try {
+            // Create new Contact object from the ContactDto
+            Contact contact = contactSrvc.createContact(contactDto);
+            LOGGER.info("POST /contact - try block - Contact: {}", contact);
+
             // Create and send email to the DD team
             emailSrvc.sendContactEmail(contact);
             LOGGER.info("POST /contact - Email sent to DD team");
-
-            contact.setContactId(contactSrvc.contactIdGeneration());
-            contact.setCreateDate(contactSrvc.dateConvert());
-            Contact savedContact = contactSrvc.saveContact(contact);
+            contactSrvc.saveContact(contact);
 
             Map<String, String> responseBody = new HashMap<>();
-            responseBody.put("contactId", savedContact.getContactId());
+            responseBody.put("contactId", contact.getContactId());
 
             String jsonResponseBody = new ObjectMapper().writeValueAsString(responseBody);
-            LOGGER.info("POST /contact - Contact saved successfully - ContactID: {}", savedContact.getContactId());
+            LOGGER.info("POST /contact - Contact saved successfully - ContactID: {}", contact.getContactId());
             return ResponseEntity.status(HttpStatus.CREATED).body(jsonResponseBody);
 
         } catch (Exception e) {
-            // Log the error message for debugging and return a response with an error
-            // message.
-            // The error message should not reveal sensitive details about your
-            // implementation.
+
             System.out.println("Error occurred while saving the contact: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("{\"message\":\"Error occurred while saving the contact. Please try again later.\"}");
+
         } finally {
             LOGGER.info("POST /contact - End");
         }

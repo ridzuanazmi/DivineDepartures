@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import nusiss.project.server.models.Contact;
+import nusiss.project.server.models.ContactDto;
 import nusiss.project.server.repositories.ContactRepository;
 
 @Service
@@ -36,5 +37,16 @@ public class ContactService {
     // Save the contact inquiry into the DB
     public Contact saveContact(Contact contact) {
         return this.contactRepo.save(contact);
+    }
+
+    public Contact createContact(ContactDto contactDto) {
+        Contact contact = new Contact();
+        contact.setContactId(contactIdGeneration());
+        contact.setCreatedDate(dateConvert());
+        contact.setContactName(contactDto.getContactName());
+        contact.setPhoneNumber(contactDto.getPhoneNumber());
+        contact.setSubject(contactDto.getSubject());
+        contact.setMessage(contactDto.getMessage());
+        return contact;
     }
 }
