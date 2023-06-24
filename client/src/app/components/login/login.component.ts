@@ -11,9 +11,11 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class LoginComponent implements OnInit{
 
+  // TODO: Improve on login error messaging, incorrect password but email add correct
   loginForm!: FormGroup;
   submitted = false;
   hide = true;
+  errorMessage!: string;
 
   constructor(
     private fb: FormBuilder,
@@ -48,6 +50,7 @@ export class LoginComponent implements OnInit{
       })
       .catch(error => {
         console.error('>>> loginForm: error: ', error)
+        this.errorMessage = 'Failed to login. Please try again.';
       })
   }
 

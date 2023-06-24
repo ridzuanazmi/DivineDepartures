@@ -73,11 +73,24 @@ export class ContactComponent implements OnInit {
 
   private createForm(): FormGroup {
     return this.fb.group({
-      contactName: [this.user ? this.user.fullName : '', [Validators.required, Validators.minLength(2)]],
-      contactEmail: [this.user ? this.user.email : '', [Validators.required, Validators.email]],
-      subject: ['', [ Validators.required, Validators.minLength(2) ]],
-      message: ['', [ Validators.required]],
-      phoneNumber: [this.user ? this.user.phoneNumber : '', [ Validators.required ]]
+      contactName: [this.user ? this.user.fullName : '',
+        [Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(128)]],
+      contactEmail: [this.user ? this.user.email : '',
+        [Validators.required,
+        Validators.email]],
+      subject: ['',
+        [Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(128)]],
+      message: ['',
+        [Validators.required,
+        Validators.maxLength(500)]],
+      phoneNumber: [this.user ? this.user.phoneNumber : '',
+        [Validators.required,
+        Validators.minLength(8),
+        Validators.pattern(/^[89]\d{7,}$/)]]
     })
   }
 

@@ -43,11 +43,18 @@
         <mat-form-field class="full-width-input">
           <mat-label>Block Number</mat-label>
           <input matInput placeholder="E.g. N-12-123" formControlName="blockNumber">
+          <mat-error *ngIf="mpForm.get('blockNumber')?.hasError('pattern')">
+            Invalid format. Format must be N-123-123 or S-123-123.
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width-input">
           <mat-label>Plot Number</mat-label>
           <input matInput placeholder="E.g. 623" formControlName="plotNumber">
+          <mat-error *ngIf="mpForm.get('myField')?.hasError('pattern')">
+            Invalid format. Only up to 4 numbers are allowed.
+          </mat-error>
         </mat-form-field>
+
         <button mat-raised-button color="primary" style="margin-right: 5px;"
         (click)="checkoutMonthly(mpForm.value.plotNumber, mpForm.value.blockNumber)">
           $300/quarter

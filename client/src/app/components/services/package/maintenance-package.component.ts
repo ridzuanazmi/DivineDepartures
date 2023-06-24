@@ -35,8 +35,15 @@ export class MaintenancePackageComponent implements OnInit {
 
   private createForm(): FormGroup<any> {
     return this.fb.group({
-      plotNumber: ['', [Validators.required]],
-      blockNumber: ['', [Validators.required]]
+      plotNumber: ['', [
+        Validators.required,
+        Validators.maxLength(4),
+        Validators.pattern(/^\d{1,4}$/)
+        ]],
+      blockNumber: ['', [
+        Validators.required,
+        Validators.pattern(/^[sSnN]-\d{1,3}-\d{1,3}$/)
+        ]]
     })
   }
 

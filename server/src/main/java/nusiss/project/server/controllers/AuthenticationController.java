@@ -56,6 +56,7 @@ public class AuthenticationController {
         }
     }
 
+    // TODO: improve security by limiting the number of login attempts
     @PostMapping(path = "/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request) {
