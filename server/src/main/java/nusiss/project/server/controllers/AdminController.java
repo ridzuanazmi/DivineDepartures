@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +33,7 @@ public class AdminController {
   }
 
   @GetMapping(path = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
+  @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<List<User>> getAllAccounts() {
     LOGGER.info("\nGET /dashboard/accounts - start");
 
