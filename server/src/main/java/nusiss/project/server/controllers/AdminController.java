@@ -23,6 +23,7 @@ import nusiss.project.server.repositories.MySqlRepository;
 
 @RestController
 @RequestMapping("/dashboard")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class AdminController {
 
   private final MySqlRepository sqlRepo;
@@ -33,7 +34,6 @@ public class AdminController {
   }
 
   @GetMapping(path = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
-  @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<List<User>> getAllAccounts() {
     LOGGER.info("\nGET /dashboard/accounts - start");
 

@@ -69,6 +69,7 @@ export class ContactComponent implements OnInit {
     // reset form
     formDirective.resetForm();
     this.contactForm.reset();
+    this.contactForm = this.createForm();
   }
 
   private createForm(): FormGroup {
@@ -83,13 +84,14 @@ export class ContactComponent implements OnInit {
       subject: ['',
         [Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(128)]],
+        Validators.maxLength(50)]],
       message: ['',
         [Validators.required,
         Validators.maxLength(500)]],
       phoneNumber: [this.user ? this.user.phoneNumber : '',
         [Validators.required,
         Validators.minLength(8),
+        Validators.maxLength(8),
         Validators.pattern(/^[89]\d{7,}$/)]]
     })
   }

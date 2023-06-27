@@ -43,6 +43,7 @@ public class ContactService {
         Contact contact = new Contact();
         contact.setContactId(contactIdGeneration());
         contact.setCreatedDate(dateConvert());
+        contact.setContactEmail(contactDto.getContactEmail());
         contact.setContactName(contactDto.getContactName());
         contact.setPhoneNumber(contactDto.getPhoneNumber());
         contact.setSubject(contactDto.getSubject());
