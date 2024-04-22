@@ -40,10 +40,3 @@ user_id				int,
 primary key (id),
 foreign key (user_id) references _user(user_id) on delete cascade
 );
-
-select * from _user;
-select * from contact_message;
-select * from shop;
-
-UPDATE _user SET full_name = "test", email = "test@mail.com", phone_number = "89658965", role = "USER" WHERE user_id = 8;
-DELETE from _user where user_id = 3;
