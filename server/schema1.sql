@@ -1,4 +1,4 @@
-create database tfipProject;
+create database IF NOT EXISTS tfipProject;
 
 use tfipproject;
 
@@ -16,6 +16,7 @@ primary key (user_id)
 create table contact_message(
 contact_id		varchar(16) not null,
 contact_email	varchar(255),
+phone_number  varchar(32),
 contact_name	varchar(255),
 created_date	varchar(128),
 message			varchar(500),
