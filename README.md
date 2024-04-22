@@ -1,6 +1,6 @@
 
 <div align="center">
-    <img src="images\logo2.png" alt="Logo" width="80" height="80">
+    <img src="images\logo2.png" alt="Logo">
     <h2 align="center">DivineDepartures</h2>
 </div>
 
