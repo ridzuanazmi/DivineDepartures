@@ -10,7 +10,7 @@
 
 ## Stacks Used
 - Angular
- - Material theme
+  - Material theme
 - Spring Boot
   - Spring Security
   - Spring Mail
@@ -33,3 +33,6 @@ To test the WebApp locally:
       ```
 4. **Open the app in your browser**. enter http://localhost:8080/
 5. **Create and account** in the register page
+
+## Usage
+
